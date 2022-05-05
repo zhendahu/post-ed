@@ -48,4 +48,3 @@ class App extends React.Component {
 }
 
 export default App;
-// git restore --staged myFile.js
