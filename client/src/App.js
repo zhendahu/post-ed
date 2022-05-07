@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Button } from "react-bootstrap";
 import {TaskModal} from "./components/TaskModal.js"
+import LoginModal from "./components/Login.js"
 
 
 class App extends React.Component {
@@ -11,7 +12,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      show:true
+      show:false
     }
   }
 
@@ -24,24 +25,15 @@ class App extends React.Component {
   
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Button variant="primary" onClick={()=>this.setState({show:true})}>
+     
+        {/* <Button variant="primary" onClick={()=>this.setState({show:true})}>
         Launch demo modal
-      </Button>
+      </Button> */}
+      
+      
+
+      <div id="login"><LoginModal/></div>
       <TaskModal show={this.state.show} onHide={()=>this.handleClose()}></TaskModal>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
   }
