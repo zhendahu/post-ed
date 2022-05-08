@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const CreateTask = () => {
     const [title, setTitle] = useState('');
@@ -8,7 +8,7 @@ const CreateTask = () => {
     const [dueDate, setDueDate] = useState('');
     const [description, setDescription] = useState('');
     const [isPending, setIsPending] = useState('false');
-    const history = useHistory();
+    // const history = useHistory();
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,6 +17,7 @@ const CreateTask = () => {
         setIsPending(true);
 
         console.log(task);  //need to replace this with fetch
+        //POST REQUEST
         //fetch ('need to have the link here',{
             //method: 'POST',
             //headers: {"Content-Type": "???"}
