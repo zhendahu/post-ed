@@ -38,6 +38,3 @@ class Task(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 class TaskGroup(models.Model):
-
-
-class TaskModal(models.Model):
