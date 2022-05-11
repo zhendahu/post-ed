@@ -38,7 +38,7 @@ class TaskGroup(models.Model):
 class Task(models.Model):
     task_name = models.CharField(max_length=50)
     task_description = models.CharField(max_length=250)
-    author = models.ForeignKey(User, related_name="authored_tasks", on_delete=models.CASCADE)
-    group = models.ForeignKey(TaskGroup, related_name="task_group", on_delete=models.CASCADE)
+    #author = models.ForeignKey(User, related_name="authored_tasks", on_delete=models.CASCADE)
+    group = models.ForeignKey(TaskGroup, related_name="group_tasks", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
