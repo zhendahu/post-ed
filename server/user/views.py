@@ -2,15 +2,22 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
 from user.serializers import UserSerializer, GroupSerializer
+from user.permissions import IsOwnerOrReadOnly
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
-
+@api_view(['POST'])
+def login(self, request, *args, **kwargs):
+        return Response(status=200)
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly,permissions.IsAuthenticated]
+
+    
 
 
 class GroupViewSet(viewsets.ModelViewSet):

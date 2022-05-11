@@ -1,8 +1,20 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import "./Login.css"
+import "./Login.css";
+import axios from "axios";
 
 class LoginModal extends React.Component {
+  componentDidMount() {
+    axios.post('//127.0.0.1:8000/api-auth/token/', 
+    {"username": "admin", "password": "123456"}
+    )
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   render() {
     return (
       <div id="form">
