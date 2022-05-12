@@ -5,6 +5,7 @@ import './App.css';
 import { Button } from "react-bootstrap";
 import {TaskModal} from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
+import Task from "./components/Task.js"
 
 
 class App extends React.Component {
@@ -12,7 +13,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      show:false
+      show:true
     }
   }
 
@@ -33,8 +34,10 @@ class App extends React.Component {
       
 
       <div id="login"><LoginModal/></div>
-      <TaskModal show={this.state.show} onHide={()=>this.handleClose()}></TaskModal>
+      {/* <TaskModal show={this.state.show} onHide={()=>this.handleClose()}></TaskModal> */}
+      {/* <div><Task/></div> */}
     </div>
+
   );
   }
 }
