@@ -28,7 +28,15 @@ class App extends React.Component {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={ <div id="login"><LoginModal/></div>} />
+            <Route
+              exact
+              path="/login"
+              element={
+                <div id="login">
+                  <LoginModal />
+                </div>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>

@@ -5,36 +5,41 @@ import "./Home.css";
 
 function Home() {
   let first_space = [];
-  for (var i = 0; i < 6; i++) {
+  for (let i = 0; i < 6; i++) {
     first_space.push(<br />);
   }
   let second_space = [];
-  for (var i = 0; i < 4; i++) {
+  for (let i = 0; i < 4; i++) {
     second_space.push(<br />);
   }
   let third_space = [];
-  for (var i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i++) {
     third_space.push(<br />);
+  }
+  let fourth_space = [];
+  for (let i = 0; i < 8; ++i) {
+    fourth_space.push(<br />);
   }
 
   return (
-    <div >
+    <div className="home-background">
       {first_space}
       <h1>
-        <center>Post-Ed</center>
+        <b>Post-Ed</b>
       </h1>
       {second_space}
-        <Link to="/login">
-          <Button variant="primary" size="xxl">
+      <Link to="/login">
+        <Button variant="light" size="xxl">
           &nbsp;Login&nbsp;
-          </Button>
-        </Link>
-        {third_space}
-        <Link to="/register">
-          <Button variant="primary" size="xxl">
+        </Button>
+      </Link>
+      {third_space}
+      <Link to="/register">
+        <Button variant="light" size="xxl">
           &nbsp;Sign Up&nbsp;
-          </Button>
-        </Link>
+        </Button>
+      </Link>
+      {fourth_space}
     </div>
   );
 }
