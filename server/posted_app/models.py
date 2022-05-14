@@ -42,3 +42,9 @@ class Task(models.Model):
     group = models.ForeignKey(TaskGroup, related_name="group_tasks", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
+
+# class TaskGroup(models.Model):
+
+
+
+# class TaskModal(models.Model):
