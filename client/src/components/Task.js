@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 //task component containing information acquired from CreateTask
 //includes checkbox functionality for user to mark completed tasks

@@ -18,11 +18,10 @@ class LoginModal extends React.Component {
   render() {
     return (
       <div id="form">
-        <Form style={{margin:"1rem"}}>
+        <Form style={{ margin: "1rem" }}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>User Name</Form.Label>
             <Form.Control type="email" placeholder="Enter username" />
-
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">

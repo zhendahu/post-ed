@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-
-  
 }
 
 .App-logo {
@@ -39,7 +37,7 @@
   }
 }
 
-#login{
+#login {
   text-align: left;
   width: 100vw;
   min-height: 100vh;
