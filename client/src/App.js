@@ -6,6 +6,24 @@ import { Button } from "react-bootstrap";
 import {TaskModal} from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
 import Task from "./components/Task.js"
+import TaskGroup from "./components/TaskGroup.js"
+
+//functions for Task
+const fakeTaskData = [{
+  title: "Finish 35L Project",
+  author: "Melissa Chen",
+  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
+},
+{
+  title: "Finish 35L Project",
+  author: "Melissa Chen",
+  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
+},
+{
+  title: "Finish 35L Project",
+  author: "Melissa Chen",
+  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
+}]
 
 
 class App extends React.Component {
@@ -13,7 +31,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      show:true
+      show:false
     }
   }
 
@@ -22,6 +40,13 @@ class App extends React.Component {
       show:false
     })
   }
+
+  openModal(){
+    this.setState({
+      show: true
+    })
+  }
+
   render(){
   
   return (
@@ -33,9 +58,9 @@ class App extends React.Component {
       
       
 
-      <div id="login"><LoginModal/></div>
-      {/* <TaskModal show={this.state.show} onHide={()=>this.handleClose()}></TaskModal> */}
-      {/* <div><Task/></div> */}
+      {/* <div id="login"><LoginModal/></div> */}
+      <TaskModal show={this.state.show} onHide={this.handleClose()}></TaskModal>
+      <div><TaskGroup title = "title" subtitle = "subtitle" tasks={fakeTaskData} onClick={this.openModal()}/></div>
     </div>
 
   );

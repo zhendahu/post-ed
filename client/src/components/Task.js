@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Checkbox from '@mui/material/Checkbox';
-import {Card} from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
-//task component containing information acquired from CreateTask
+//task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
 //and uncheck box in event task was not sufficiently completed
 
@@ -11,25 +11,24 @@ import {Card} from 'react-bootstrap';
 //checkbox
 //clicking functionality
 
-const Task=()=>{
+const Task=(props)=>{
     const [isChecked, setIsChecked] = useState(false);
     return(
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '25rem' }}>
             <Card.Body>
-                <Card.Title>Task Title</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Author</Card.Subtitle>
-                <Card.Text>
-                </Card.Text>
+                <Card.Title>{props.data.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{props.data.author}</Card.Subtitle>
+                <Card.Text>{props.data.description}</Card.Text>
                 <Checkbox onChange={(event)=>setIsChecked(!isChecked)}/>
-                <Card.Link href="#">Open Task</Card.Link>
+                <Button
+                variant="outline-primary"
+                onClick = {
+                    props.onClick
+                }
+                >
+                    Open Task </Button>
             </Card.Body>
         </Card>
-        // <div>
-        //     <h3>Title</h3>
-        //     <h3>Author</h3>
-        //     
-
-        // </div>
         );
 }
 

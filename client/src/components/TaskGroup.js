@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {ListGroup, Button, Card, ToggleButton} from 'react-bootstrap'
 import TrashBin from '../static/images/trashbin.png'
-
+import Task from  "./Task"
 
 
 export default class TaskGroup extends Component{
@@ -24,14 +24,16 @@ export default class TaskGroup extends Component{
                 <Card.Subtitle className="mb-2 text-muted">{this.props.subtitle}</Card.Subtitle>
             <ListGroup className="list-group-flush" bg='dark'>
             {this.props.tasks.map(task => 
+
+<Task data={task} onClick={this.props.onClick}/>
            
-            <ListGroup.Item>
-                <big>{task}</big>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <Button variant='outline-danger' size="sm" onClick={() => this.removeItem()} >   
-                <img src={TrashBin} alt="add item" width="10" /> 
-                </Button>
-            </ListGroup.Item>
+    //        <ListGroup.Item>
+    //        <big>{task}</big>
+    //        &nbsp;&nbsp;&nbsp;&nbsp;
+    //        <Button variant='outline-danger' size="sm" onClick={() => this.removeItem()} >   
+    //        <img src={TrashBin} alt="add item" width="10" /> 
+    //        </Button>
+    //    </ListGroup.Item>
    
             )
             }
