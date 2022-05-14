@@ -5,6 +5,8 @@ import './App.css';
 import { Button } from "react-bootstrap";
 import {TaskModal} from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
+import UserProfile from "./components/UserProfile.js"
+import ProfilePic from "./static/images/trashbin.png"
 
 
 class App extends React.Component {
@@ -32,11 +34,20 @@ class App extends React.Component {
       
       
 
-      <div id="login"><LoginModal/></div>
-      <TaskModal show={this.state.show} onHide={()=>this.handleClose()}></TaskModal>
+      <div><UserProfile /></div>
+      
     </div>
   );
   }
 }
+
+UserProfile.defaultProps = {
+  name: "Bob Ross",
+  email: "bobross@gmail.com",
+  groups: "Google",
+  tasks: "Learn Emacs",
+  profilepicture: ProfilePic
+
+};
 
 export default App;

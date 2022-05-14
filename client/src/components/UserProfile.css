@@ -1,0 +1,20 @@
+.profile-background{
+    background-color: linear-gradient(to right, aqua, fuchsia);
+}
+
+#listgroup{
+    width:45rem;
+    position: absolute;
+    right: 30px;
+    padding: 10px 0px;
+    padding-top: 75px;
+    font-size: 3em;
+    font-family: "Concert One", cursive;
+    font-weight: bold;
+}
+
+#profpic{
+    position: absolute;
+    left: 30px;
+    padding-top: 75px;
+}
