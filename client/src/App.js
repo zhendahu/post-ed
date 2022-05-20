@@ -7,6 +7,7 @@ import {TaskModal} from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
 import UserProfile from "./components/UserProfile.js"
 import ProfilePic from "./static/images/trashbin.png"
+import EditProfileModal from "./components/EditProfileModal.js"
 
 
 class App extends React.Component {
