@@ -7,6 +7,7 @@ import "./App.css";
 import { Button } from "react-bootstrap";
 import { TaskModal } from "./components/TaskModal.js";
 import LoginModal from "./components/Login.js";
+import SignUpModal from "./components/SignUp.js"
 import Home from "./components/Home.js";
 
 class App extends React.Component {
@@ -32,8 +33,17 @@ class App extends React.Component {
               exact
               path="/login"
               element={
-                <div id="login">
+                <div className="home-background" id="login">
                   <LoginModal />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/register"
+              element={
+                <div  id="login" className="home-background"> 
+                  <SignUpModal />
                 </div>
               }
             />
