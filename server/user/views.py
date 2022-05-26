@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 @api_view(['POST'])
-def login(self, request, *args, **kwargs):
+def register(self, request, *args, **kwargs):
         return Response(status=200)
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -15,7 +15,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [IsOwnerOrReadOnly,permissions.IsAuthenticated]
+    permission_classes = [IsOwnerOrReadOnly]
 
     
 

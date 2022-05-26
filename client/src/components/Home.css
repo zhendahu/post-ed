@@ -1,0 +1,19 @@
+.btn-xxl {
+  font-size: 2.3em;
+  border-radius: 30px;
+  color: black;
+  font-family: "Concert One", cursive;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 8.2em;
+  justify-content: space-between;
+  font-family: "Concert One", cursive;
+  mix-blend-mode: difference;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.home-background {
+  background: linear-gradient(to right, aqua, fuchsia);
+}

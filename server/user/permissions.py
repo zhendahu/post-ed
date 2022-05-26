@@ -14,5 +14,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the owner of the snippet.
         print("============")
-        print(request.__dict__)
-        return True
+        print(request.path,request.method)
+        if request.path=="/api/users/" and (request.method=="POST" or request.method=="GET"):
+            return True
+        return bool(request.user and request.user.is_authenticated)
