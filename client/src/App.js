@@ -62,7 +62,6 @@ class App extends React.Component {
       <TaskModal show={this.state.show} onHide={this.handleClose()}></TaskModal>
       <div><TaskGroup title = "title" subtitle = "subtitle" tasks={fakeTaskData} onClick={this.openModal()}/></div>
     </div>
-
   );
   }
 }
