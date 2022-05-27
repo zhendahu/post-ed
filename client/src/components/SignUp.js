@@ -11,6 +11,8 @@ class SignUpModal extends React.Component {
     this.state = {
       validated: false,
       username: "q1251640657",
+      name:"Minrui Gui",
+      group:"ucla",
       password: "123456",
       email: "guiminrui215@gmail.com",
       usernamePrompt:"Please enter valid username with its length greater than 6.",
@@ -116,6 +118,42 @@ class SignUpModal extends React.Component {
               looks good
             </Form.Control.Feedback>
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter name"
+              value={this.state.name}
+              required
+              onChange={onchange}
+              name="name"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+             name can not be empty
+            </Form.Control.Feedback>
+            <Form.Control.Feedback type="valid">
+              looks good
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicGroup">
+            <Form.Label>Group</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter name"
+              value={this.state.group}
+              required
+              onChange={onchange}
+              name="group"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+             group can not be empty
+            </Form.Control.Feedback>
+            <Form.Control.Feedback type="valid">
+              looks good
+            </Form.Control.Feedback>
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -173,6 +211,9 @@ class SignUpModal extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          {/* <Button variant="primary" type="submit">
+            Return
+          </Button> */}
         </Form>
       </div>
     );
