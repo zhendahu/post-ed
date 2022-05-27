@@ -10,23 +10,9 @@ import TaskGroup from "./components/TaskGroup.js"
 import SignUpModal from "./components/SignUp.js"
 import Home from "./components/Home.js";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import TaskPage from "./components/TaskPage.js"
 
-//functions for Task
-const fakeTaskData = [{
-  title: "Finish 35L Project",
-  author: "Melissa Chen",
-  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
-},
-{
-  title: "Finish 35L Project",
-  author: "Melissa Chen",
-  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
-},
-{
-  title: "Finish 35L Project",
-  author: "Melissa Chen",
-  description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
-}]
+
 
 // import logo from "./logo.svg";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -54,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<TaskPage />} />
             <Route
               exact
               path="/login"

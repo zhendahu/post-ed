@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Checkbox from '@mui/material/Checkbox';
 import { Card, Button } from 'react-bootstrap';
+import EditTaskModal from "./EditTaskModal";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -10,6 +11,9 @@ import { Card, Button } from 'react-bootstrap';
 //author
 //checkbox
 //clicking functionality
+
+//STILL NEED TO ADD FUNCTIONALITY FOR OPENING A TASK THAT IS ALREADY
+//MADE AND NEEDS TO BE EDITED
 
 const Task=(props)=>{
     const [isChecked, setIsChecked] = useState(false);
@@ -22,9 +26,7 @@ const Task=(props)=>{
                 <Checkbox onChange={(event)=>setIsChecked(!isChecked)}/>
                 <Button
                 variant="outline-primary"
-                onClick = {
-                    props.onClick
-                }
+                onClick={() => this.openEditTaskModal()}
                 >
                     Open Task </Button>
             </Card.Body>
