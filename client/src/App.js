@@ -1,14 +1,26 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-
-import logo from "./logo.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+//import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Button } from "react-bootstrap";
-import { TaskModal } from "./components/TaskModal.js";
-import LoginModal from "./components/Login.js";
+import {TaskModal} from "./components/TaskModal.js"
+import LoginModal from "./components/Login.js"
+import Task from "./components/Task.js"
+import TaskGroup from "./components/TaskGroup.js"
 import SignUpModal from "./components/SignUp.js"
 import Home from "./components/Home.js";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import TaskPage from "./components/TaskPage.js"
+
+
+
+// import logo from "./logo.svg";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./App.css";
+// import { Button } from "react-bootstrap";
+// import { TaskModal } from "./components/TaskModal.js";
+// import LoginModal from "./components/Login.js";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +40,7 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<TaskPage />} />
             <Route
               exact
               path="/login"

@@ -198,7 +198,8 @@ class SignUpModal extends React.Component {
               minLength="6"
               placeholder="Password"
               required
-              value='123456'
+              value={this.state.confirmedPassword}
+              onChange={onchange}
             />
 
             <Form.Control.Feedback type="invalid">

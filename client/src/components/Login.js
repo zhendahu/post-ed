@@ -23,7 +23,7 @@ class LoginModal extends React.Component {
   }
   componentDidMount() {
     axios
-      .post("/api-auth/token/", { username: "admin", password: "123456" })
+      .post("/api-auth/token/", { username: this.state.username, password: this.state.password})
       .then(function (response) {
         console.log(response);
       })
