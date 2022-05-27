@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Button } from "react-bootstrap";
@@ -7,6 +7,9 @@ import {TaskModal} from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
 import Task from "./components/Task.js"
 import TaskGroup from "./components/TaskGroup.js"
+import SignUpModal from "./components/SignUp.js"
+import Home from "./components/Home.js";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 //functions for Task
 const fakeTaskData = [{
@@ -25,14 +28,13 @@ const fakeTaskData = [{
   description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
 }]
 
-import logo from "./logo.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import { Button } from "react-bootstrap";
-import { TaskModal } from "./components/TaskModal.js";
-import LoginModal from "./components/Login.js";
-import SignUpModal from "./components/SignUp.js"
-import Home from "./components/Home.js";
+// import logo from "./logo.svg";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./App.css";
+// import { Button } from "react-bootstrap";
+// import { TaskModal } from "./components/TaskModal.js";
+// import LoginModal from "./components/Login.js";
+
 
 class App extends React.Component {
   constructor(props) {
