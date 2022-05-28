@@ -1,26 +1,30 @@
 import React from "react";
 import {Form,Button, ListGroup} from "react-bootstrap";
+import { useParams } from "react-router";
 import App from "../App";
 import './UserProfile.css';
 
 
-class UserProfile extends React.Component {
-    render(){
+function UserProfile (props) {
+
+    const {id} = useParams()
+    console.log("Hello")
+
         return (
             <div className="profile-background">
                 <div id="listgroup">
-                    <ListGroup.Item>Name: {this.props.name} </ListGroup.Item>
-                    <ListGroup.Item>Email: {this.props.email} </ListGroup.Item>
-                    <ListGroup.Item>Groups: {this.props.groups} </ListGroup.Item>
-                    <ListGroup.Item>Assigned tasks: {this.props.tasks} </ListGroup.Item>
+                    <ListGroup.Item>Name: {id} </ListGroup.Item>
+                    <ListGroup.Item>Email: {props.email} </ListGroup.Item>
+                    <ListGroup.Item>Groups: {props.groups} </ListGroup.Item>
+                    <ListGroup.Item>Assigned tasks: {props.tasks} </ListGroup.Item>
                 </div>
 
                 <div id="profile-picture">
-                    <img id="profpic" src={this.props.profilepicture} width = '300px' />
+                    <img id="profpic" src={props.profilepicture} width = '300px' />
                 </div>
             </div>
         );
-    }
+    
 }
 
 
