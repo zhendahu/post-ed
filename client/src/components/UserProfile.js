@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Form,Button, ListGroup} from "react-bootstrap";
 import { useParams } from "react-router";
 import App from "../App";
@@ -6,6 +6,11 @@ import './UserProfile.css';
 
 
 function UserProfile (props) {
+
+    useEffect(()=>{
+        fetch("http://127.0.0.1:8000/api/users/1/").then(response => response.json())
+        .then(data => console.log(data));
+    })
 
     const {id} = useParams()
     console.log("Hello")
