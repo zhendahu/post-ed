@@ -40,6 +40,13 @@ class EditProfileModal extends React.Component {
                                 autoFocus
                             />
                         </Form.Group>
+                        <Form.Group className="uploadPicture" controlId="inputEditedPicture">
+                            <Form.Label>Upload Picture</Form.Label>
+                            <Form.control
+                                type="text"
+                                autoFocus
+                            />
+                        </Form.Group>
                     </Form>
                 </Modal.Body>
 
