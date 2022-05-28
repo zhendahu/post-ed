@@ -11,6 +11,7 @@ import SignUpModal from "./components/SignUp.js"
 import Home from "./components/Home.js";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import TaskPage from "./components/TaskPage.js"
+import UserProfile from "./components/UserProfile";
 
 
 
@@ -23,6 +24,8 @@ import TaskPage from "./components/TaskPage.js"
 
 
 class App extends React.Component {
+
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -56,6 +59,15 @@ class App extends React.Component {
               element={
                 <div  id="login" className="home-background"> 
                   <SignUpModal />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              element={
+                <div  id="profile" className="home-background"> 
+                  <UserProfile />
                 </div>
               }
             />
