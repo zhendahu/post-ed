@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-  background-color: linear-gradient(to right, aqua, fuchsia);
-  
 }
 
 .App-logo {
@@ -39,11 +37,12 @@
   }
 }
 
-#login{
+#login {
   text-align: left;
   width: 100vw;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }

@@ -1,7 +1,12 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
-class TaskModal extends React.Component {
+//THIS IS NOT COMPLETED
+//DIFFERENCE BETWEEN EDITTASKMODAL AND TASKMODAL IS THAT TASKMODAL
+//OPENS A NEW EMPTY FIELD FOR A NEW TASK WHEREAS EDITTASKMODAL WILL 
+//DISPLAY THE MODAL WITH FILLED FIELDS THAT CAN BE EDITED
+
+class EditTaskModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,4 +60,4 @@ class TaskModal extends React.Component {
   }
 }
 
-export default TaskModal;
+export default EditTaskModal;
