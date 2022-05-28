@@ -5,12 +5,12 @@ import App from "../App";
 import './UserProfile.css';
 
 
-function UserProfile (props) {
-    const [userInfo, setUserInfo] = useState(0);
+function EditUserProfile (props) {
+    const [edit_userInfo, edit_setUserInfo] = useState(0);
     useEffect(()=>{
         fetch("http://127.0.0.1:8000/api/users/1/").then(response => response.json())
         .then(data => {
-            setUserInfo(data)
+            edit_setUserInfo(data)
             console.log(data)});
     })
 
@@ -22,13 +22,13 @@ function UserProfile (props) {
                     <h1>Post-Ed</h1>
                 </div>
                 <div id="header2">
-                    <h2>{userInfo.username}'s Profile</h2>
+                    <h2>{edit_userInfo.username}'s Profile</h2>
                 </div>
 
                 <div id="listgroup">
-                    <ListGroup.Item>Name: {userInfo.username} </ListGroup.Item>
-                    <ListGroup.Item>Email: {userInfo.email} </ListGroup.Item>
-                    <ListGroup.Item>Groups: {userInfo.groups} </ListGroup.Item>
+                    <ListGroup.Item>Name: {edit_userInfo.username} </ListGroup.Item>
+                    <ListGroup.Item>Email: {edit_userInfo.email} </ListGroup.Item>
+                    <ListGroup.Item>Groups: {edit_userInfo.groups} </ListGroup.Item>
                     <ListGroup.Item>Assigned tasks: {props.tasks} </ListGroup.Item>
                 </div>
 
@@ -36,8 +36,8 @@ function UserProfile (props) {
                     <img id="profpic" src={props.profilepicture} width = '300px' />
                 </div>
 
-                <div id="edit-profile-button">
-                    <button>Edit profile</button>
+                <div id="save-profile-button">
+                    <button>Save profile</button>
                 </div>
             </div>
         );
@@ -46,4 +46,4 @@ function UserProfile (props) {
 
 
 
-export default UserProfile
+export default EditUserProfile
