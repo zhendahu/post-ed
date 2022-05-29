@@ -1,27 +1,25 @@
-.profile-background{
-    background-color: linear-gradient(to right, aqua, fuchsia);
+.profile-background {
+    min-height: 100vh;
+    background-color: white;
 }
 
-#header1{
+h1 {
+    font-size: 8.2em;
+    justify-content: space-between;
     font-family: "Concert One", cursive;
+    mix-blend-mode: difference;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 
-#header2{
+#listgroup {
     font-family: "Concert One", cursive;
-}
-
-#listgroup{
-    font-family: "Concert One", cursive;
-    width:45rem;
-    position: absolute;
-    right: 30px;
-    padding: 10px 0px;
-    padding-top: 75px;
+    width: 45rem;
     font-size: 3em;
+    margin: 0 auto;
     font-weight: bold;
 }
 
-#profpic{
+#profpic {
     position: absolute;
     left: 30px;
     padding-top: 75px;
