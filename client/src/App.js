@@ -12,6 +12,7 @@ import Home from "./components/Home.js";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import TaskPage from "./components/TaskPage.js"
 import UserProfile from "./components/UserProfile";
+import EditUserProfile from "./components/EditUserProfile"
 
 
 
@@ -68,6 +69,15 @@ class App extends React.Component {
               element={
                 <div  id="profile" className="home-background"> 
                   <UserProfile />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/profile/edit/:id"
+              element={
+                <div  id="edit_profile" className="home-background"> 
+                  <EditUserProfile />
                 </div>
               }
             />
