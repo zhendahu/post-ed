@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, ListGroup, Image } from "react-bootstrap";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
 
 
@@ -21,40 +22,26 @@ function UserProfile(props) {
         // TODO
     }
 
+    const navigate = useNavigate();
+
     return (
         <div className="profile-background">
             <h1>Post-Ed</h1>
             <h2>{userInfo.username}'s Profile</h2>
 
-            {/* <div id="profile-picture">
-                <img id="profpic" src={props.profilepicture} width='300px' />
-            </div> */}
-
             <Image src="/logo192.png"></Image>
 
             <div>
-                <Button>Edit profile</Button>
-                <Button>Create new group</Button>
-                <Button>Join group</Button>
+                <Button onClick={() => navigate(`/profile/edit/${id}`)} >Edit profile</Button>
+                {/* <Button>Create new group</Button>
+                <Button>Join group</Button> */}
             </div>
             <br></br>
             <div id="listgroup">
                 <ListGroup.Item>Name: {userInfo.username} </ListGroup.Item>
                 <ListGroup.Item>Email: {userInfo.email} </ListGroup.Item>
                 <ListGroup.Item>Groups: {userInfo.groups} </ListGroup.Item>
-                {/* <ListGroup.Item>Assigned tasks: {props.tasks} </ListGroup.Item> */}
             </div>
-
-
-            {/* <div id="edit-profile-button">
-                <Button>Edit profile</Button>
-            </div>
-            <div id="create-group">
-                <Button>Create new group</Button>
-            </div>
-            <div id="join-group">
-                <Button>Join group</Button>
-            </div> */}
         </div>
     );
 

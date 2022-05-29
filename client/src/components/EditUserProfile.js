@@ -1,47 +1,55 @@
-import React, { useEffect,useState } from "react";
-import {Form,Button, ListGroup} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Button, ListGroup, Image } from "react-bootstrap";
 import { useParams } from "react-router";
 import App from "../App";
 import './UserProfile.css';
 
 
-function EditUserProfile (props) {
-    const [edit_userInfo, edit_setUserInfo] = useState(0);
-    useEffect(()=>{
-        fetch("http://127.0.0.1:8000/api/users/1/").then(response => response.json())
-        .then(data => {
-            edit_setUserInfo(data)
-            console.log(data)});
-    })
+function EditUserProfile(props) {
+    const [userInfo, setUserInfo] = useState(0);
+    const { id } = useParams();
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/users/${id}/`).then(response => response.json())
+            .then(data => {
+                setUserInfo(data)
+                console.log(data)
+            });
+    }, []);
 
-    const {id} = useParams()
+    if (userInfo.groups && userInfo.groups.length === 0) {
+        userInfo.groups = "None"
+    } else {
+        // TODO
+    }
 
-        return (
-            <div className="profile-background">
-                <div id="header1">
-                    <h1>Post-Ed</h1>
-                </div>
-                <div id="header2">
-                    <h2>{edit_userInfo.username}'s Profile</h2>
-                </div>
+    return (
+        <div className="profile-background">
+            <h1>Post-Ed</h1>
+            <h2>{userInfo.username}'s Profile</h2>
 
-                <div id="listgroup">
-                    <ListGroup.Item>Name: </ListGroup.Item>
-                    <ListGroup.Item>Email: </ListGroup.Item>
-                    <ListGroup.Item>Groups:  </ListGroup.Item>
-                    <ListGroup.Item>Assigned tasks: {props.tasks} </ListGroup.Item>
-                </div>
+            <Image src="/logo192.png"></Image>
 
-                <div id="profile-picture">
-                    <img id="profpic" src={props.profilepicture} width = '300px' />
-                </div>
+            <br></br>
+            <Form class="container-md">
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Edit Name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter name" />
+                </Form.Group>
 
-                <div id="save-profile-button">
-                    <button>Save profile</button>
-                </div>
-            </div>
-        );
-    
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Edit Email</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit" method="POST">
+                    Submit
+                </Button>
+            </Form>
+        </div>
+    );
+
 }
 
 
