@@ -39,6 +39,12 @@ function UserProfile (props) {
                 <div id="edit-profile-button">
                     <button>Edit profile</button>
                 </div>
+                <div id="create-group">
+                    <button>Create new group</button>
+                </div>
+                <div id="join-group">
+                    <button>Join group</button>
+                </div>
             </div>
         );
     

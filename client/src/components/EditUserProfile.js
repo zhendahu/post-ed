@@ -26,9 +26,9 @@ function EditUserProfile (props) {
                 </div>
 
                 <div id="listgroup">
-                    <ListGroup.Item>Name: {edit_userInfo.username} </ListGroup.Item>
-                    <ListGroup.Item>Email: {edit_userInfo.email} </ListGroup.Item>
-                    <ListGroup.Item>Groups: {edit_userInfo.groups} </ListGroup.Item>
+                    <ListGroup.Item>Name: </ListGroup.Item>
+                    <ListGroup.Item>Email: </ListGroup.Item>
+                    <ListGroup.Item>Groups:  </ListGroup.Item>
                     <ListGroup.Item>Assigned tasks: {props.tasks} </ListGroup.Item>
                 </div>
 
