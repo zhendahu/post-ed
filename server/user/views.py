@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
+from user.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
 from user.serializers import UserSerializer, GroupSerializer
@@ -7,7 +8,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 @api_view(['POST'])
-def register(self, request, *args, **kwargs):
+def fileUpload(self, request, *args, **kwargs):
+        print(request.FILES)
         return Response(status=200)
 class UserViewSet(viewsets.ModelViewSet):
     """

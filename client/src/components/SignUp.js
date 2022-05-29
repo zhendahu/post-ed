@@ -11,18 +11,20 @@ class SignUpModal extends React.Component {
     this.state = {
       validated: false,
       username: "q1251640657",
-      name:"Minrui Gui",
-      group:"ucla",
+      name: "Minrui Gui",
+      group: "ucla",
       password: "123456",
       email: "guiminrui215@gmail.com",
-      usernamePrompt:"Please enter valid username with its length greater than 6.",
-      goto:""
+      usernamePrompt:
+        "Please enter valid username with its length greater than 6.",
+      avatar: "",
+      goto: "",
     };
     this.password = React.createRef();
     this.confirmedPassword = React.createRef();
     this.usernameRef = React.createRef();
   }
-  
+
   componentDidMount() {
     var password = this.password.current,
       confirm_password = this.confirmedPassword.current;
@@ -40,16 +42,23 @@ class SignUpModal extends React.Component {
   }
 
   render() {
-
     const handleSubmit = (event) => {
-      let _this =this;
+      let _this = this;
       const form = event.currentTarget;
-      console.log("handle submit", form.checkValidity());
-      _this.usernameRef.current.setCustomValidity("")
+      var formData = new FormData();
+      var imagefile = document.querySelector("#file");
+      formData.append("image", imagefile.files[0]);
+      axios.post("upload_file", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      _this.usernameRef.current.setCustomValidity("");
       if (!form.checkValidity()) {
         this.setState({
           validated: true,
-          usernamePrompt:"Please enter valid username with its length greater than 6."
+          usernamePrompt:
+            "Please enter valid username with its length greater than 6.",
         });
       } else {
         axios
@@ -59,23 +68,22 @@ class SignUpModal extends React.Component {
             password: this.state.password,
             groups: [],
           })
-          .then( (response)=>{
+          .then((response) => {
             console.log(response);
             _this.setState({
               validated: false,
             });
-            if(response.status==201){
-              
+            if (response.status == 201) {
               this.setState({
-                goto:"/"
-              })
+                goto: "/",
+              });
             }
           })
           .catch(function (error) {
-            _this.usernameRef.current.setCustomValidity("Duplicated username")
+            _this.usernameRef.current.setCustomValidity("Duplicated username");
             _this.setState({
               validated: true,
-              usernamePrompt:"Duplicated username"
+              usernamePrompt: "Duplicated username",
             });
             console.log(error);
           });
@@ -90,9 +98,7 @@ class SignUpModal extends React.Component {
     };
     return (
       <div id="form">
-        {this.state.goto && (
-          <Navigate to={this.state.goto} replace={true} />
-        )}
+        {this.state.goto && <Navigate to={this.state.goto} replace={true} />}
         <Form
           noValidate
           style={{ margin: "1rem" }}
@@ -130,7 +136,7 @@ class SignUpModal extends React.Component {
               required
             />
             <Form.Control.Feedback type="invalid">
-             name can not be empty
+              name can not be empty
             </Form.Control.Feedback>
             <Form.Control.Feedback type="valid">
               looks good
@@ -148,7 +154,25 @@ class SignUpModal extends React.Component {
               required
             />
             <Form.Control.Feedback type="invalid">
-             group can not be empty
+              group can not be empty
+            </Form.Control.Feedback>
+            <Form.Control.Feedback type="valid">
+              looks good
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicGroup">
+            <Form.Label>Avatar</Form.Label>
+            <Form.Control
+              type="file"
+              value={this.state.avatar}
+              required
+              onChange={onchange}
+              name="avatar"
+              accept=".jpeg,.jpg,.png"
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              group can not be empty
             </Form.Control.Feedback>
             <Form.Control.Feedback type="valid">
               looks good
@@ -183,9 +207,7 @@ class SignUpModal extends React.Component {
               onChange={onchange}
               name="password"
             />
-            <Form.Control.Feedback type="invalid">
-              
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
             <Form.Control.Feedback type="valid">
               looks good
             </Form.Control.Feedback>
