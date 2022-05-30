@@ -1,22 +1,20 @@
-import React from "react";
+import React,{useState} from "react";
 //import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import { Button } from "react-bootstrap";
-import { TaskModal } from "./components/TaskModal.js"
-import LoginModal from "./components/Login.js"
-import Task from "./components/Task.js"
-import TaskGroup from "./components/TaskGroup.js"
-import SignUpModal from "./components/SignUp.js"
+import { TaskModal } from "./components/TaskModal.js";
+import LoginModal from "./components/Login.js";
+import Task from "./components/Task.js";
+import TaskGroup from "./components/TaskGroup.js";
+import SignUpModal from "./components/SignUp.js";
 import Home from "./components/Home.js";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import TaskPage from "./components/TaskPage.js"
+import { Routes, Route, BrowserRouter ,useNavigate} from "react-router-dom";
+import TaskPage from "./components/TaskPage.js";
 import UserProfile from "./components/UserProfile";
-import EditUserProfile from "./components/EditUserProfile"
+import EditUserProfile from "./components/EditUserProfile";
 import CreateGroup from "./components/CreateGroup";
 import JoinGroup from "./components/JoinGroup";
-
-
 
 // import logo from "./logo.svg";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,10 +23,50 @@ import JoinGroup from "./components/JoinGroup";
 // import { TaskModal } from "./components/TaskModal.js";
 // import LoginModal from "./components/Login.js";
 
+import axios from "axios";
+import jwt from "./utils/jwt.js";
+
+axios.defaults.baseURL = "//127.0.0.1:8000";
+const SetupInterceptors = (navigate) => {
+  axios.interceptors.request.use(
+    function (config) {
+      console.log("request")
+      config.headers.Authorization = "Bearer "+jwt.getToken();
+      return config;
+    },
+    function (error) {
+      return Promise.reject(error);
+    }
+  );
+
+  axios.interceptors.response.use(
+    function (response) {
+      console.log("response");
+      return response;
+    },
+    function (error) {
+      console.log("error",error);
+      if(error.response.status==401){
+        navigate("/login",{replace:true})
+      }
+      return Promise.reject(error);
+    }
+  );
+};
+
+function NavigateFunctionComponent(props) {
+  let navigate = useNavigate();
+  const [ran,setRan] = useState(false);
+
+  {/* only run setup once */}
+  if(!ran){
+     SetupInterceptors(navigate);
+     setRan(true);
+  }
+  return <></>;
+}
 
 class App extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -45,6 +83,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
+        {<NavigateFunctionComponent />}
           <Routes>
             <Route exact path="/" element={<TaskPage />} />
             <Route
