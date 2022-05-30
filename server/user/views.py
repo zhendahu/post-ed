@@ -1,19 +1,24 @@
-from http.client import HTTPResponse
-from xmlrpc.client import ResponseError
-from django.contrib.auth.models import User, Group
-from django.http import JsonResponse
+from django.contrib.auth.models import Group
+from user.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
 from user.serializers import UserSerializer, GroupSerializer
 from user.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.authtoken.models import Token
-import json
+from django.http import JsonResponse
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @api_view(['POST'])
-def register(self, request, *args, **kwargs):
-        return Response(status=200)
+def fileUpload(request, *args, **kwargs):
+    filename,extension= os.path.splitext(request.FILES["image"].name)
+    filePath= os.path.join(BASE_DIR,"static","avatars") 
+    with open(os.path.join(filePath,request.data["username"]+extension), 'wb+') as destination:
+        for chunk in request.FILES["image"].chunks():
+            destination.write(chunk)
+    return JsonResponse({'image_url': "avatars/"+request.data["username"]+extension})
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

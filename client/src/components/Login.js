@@ -22,14 +22,6 @@ class LoginModal extends React.Component {
     };
   }
   componentDidMount() {
-    axios
-      .post("/api-auth/token/", { username: this.state.username, password: this.state.password})
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
   render() {
     const onchange = (event) => {
@@ -55,18 +47,13 @@ class LoginModal extends React.Component {
             "Please enter valid username with its length greater than 6.",
         });
       } else {
-        axios
-          .post("/api-auth/token/", {
-            username: this.state.username,
-            password: this.state.password,
-          })
+        jwt.login(this.state.username,this.state.password)
           .then((response) => {
             console.log(response);
             _this.setState({
               validated: false,
             });
             if (response.status == 200) {
-              jwt.setToken(response.data.access);
               this.setState({
                 goto: "/",
               });
