@@ -17,3 +17,10 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
+class TeamViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Teams to be viewed or edited.
+    """
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+

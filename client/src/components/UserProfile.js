@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
 import PostedNavbar from "./PostedNavbar.js";
 
-
 function UserProfile(props) {
     const [userInfo, setUserInfo] = useState(0);
     const { id } = useParams();
@@ -33,7 +32,9 @@ function UserProfile(props) {
             <Image src="/logo192.png"></Image>
 
             <div>
-                <Button onClick={() => navigate(`/profile/edit/${id}`)} >Edit profile</Button>
+                <Button style={{margin: "2px"}} onClick={() => navigate(`/profile/edit/${id}`)} >Edit profile</Button>
+                <Button onClick={() => navigate(`/creategroup`)}>Create Group</Button>
+                <Button onClick={() => navigate(`/joingroup`)} style={{margin: "2px"}}>Join Group</Button>
                 {/* <Button>Create new group</Button>
                 <Button>Join group</Button> */}
             </div>
