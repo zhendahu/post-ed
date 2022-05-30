@@ -12,7 +12,7 @@ const PostedNavbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/profile/1">Profile</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Groups" id="basic-nav-dropdown">
               <NavDropdown.Item href="/creategroup">Create Group</NavDropdown.Item>
               <NavDropdown.Divider />

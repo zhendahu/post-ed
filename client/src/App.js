@@ -106,7 +106,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/profile/:id"
+              path="/profile"
               element={
                 <div id="profile" className="home-background">
                   <UserProfile />
@@ -115,7 +115,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/profile/edit/:id"
+              path="/profile/edit"
               element={
                 <div id="edit_profile" className="home-background">
                   <EditUserProfile />

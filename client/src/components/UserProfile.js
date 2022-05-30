@@ -4,46 +4,61 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
 import PostedNavbar from "./PostedNavbar.js";
+import jwt from "../utils/jwt.js";
+import axios from "axios";
 
 function UserProfile(props) {
     const [userInfo, setUserInfo] = useState(0);
-    const { id } = useParams();
+    const [teamsInfo, setTeamsInfo] = useState([]);
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/users/${id}/`).then(response => response.json())
-            .then(data => {
-                setUserInfo(data)
-                console.log(data)
-            });
-    }, []);
-
-    if (userInfo.groups && userInfo.groups.length === 0) {
-        userInfo.groups = "None"
-    } else {
-        // TODO
-    }
+        jwt.getUser().then(user => {
+            console.log(user);
+            setUserInfo(user);
+        })
+        try {
+            if (userInfo.team_set && userInfo.team_set.length === 0) {
+                userInfo.team_set = 'None';
+            } else {
+                //setTeamsInfo(new Array(userInfo.team_set.length));
+                for (let i = 0; i < userInfo.team_set.length; i++) {
+                    axios.get(userInfo.team_set[i]).then(res => teamsInfo[i] = res.data.team_name);
+                }
+                setTeamsInfo(teamsInfo)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }, [userInfo.username, userInfo.email, teamsInfo]);
 
     const navigate = useNavigate();
-
+    console.log(teamsInfo)
+    
     return (
         <div className="profile-background">
             <PostedNavbar />
             <h2>{userInfo.username}'s Profile</h2>
 
-            <Image src="/logo192.png"></Image>
+            <Image src={userInfo.image_url}></Image>
 
             <div>
-                <Button style={{margin: "2px"}} onClick={() => navigate(`/profile/edit/${id}`)} >Edit profile</Button>
+                <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
                 <Button onClick={() => navigate(`/creategroup`)}>Create Group</Button>
-                <Button onClick={() => navigate(`/joingroup`)} style={{margin: "2px"}}>Join Group</Button>
-                {/* <Button>Create new group</Button>
-                <Button>Join group</Button> */}
+                <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "2px" }}>Join Group</Button>
             </div>
             <br></br>
-            <div id="listgroup">
+            <ListGroup className="container" style={{maxWidth: '45%'}}>
                 <ListGroup.Item>Name: {userInfo.username} </ListGroup.Item>
                 <ListGroup.Item>Email: {userInfo.email} </ListGroup.Item>
-                <ListGroup.Item>Groups: {userInfo.groups} </ListGroup.Item>
-            </div>
+                <ListGroup.Item>Groups: 
+                    <ListGroup>
+                        {teamsInfo.map((value, index) => {
+                            return (
+                                <ListGroup.Item key={index}>{value}</ListGroup.Item>
+                            );
+                        })}
+                    </ListGroup>
+                </ListGroup.Item>
+            </ListGroup>
         </div>
     );
 

@@ -46,8 +46,6 @@ REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
-    'posted_app',
-    'user',
     'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    "corsheaders",
+    'corsheaders',
+    'posted_app',
+    'user'
 ]
 
 MIDDLEWARE = [
