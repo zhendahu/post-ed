@@ -7,12 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const CreateGroup = () => {
     const [userInfo, setUserInfo] = useState(0);
+    const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
             console.log(user);
             setUserInfo(user);
         })
-    }, [userInfo.url]);
+    }, [userInfo.url, errorInfo]);
 
     const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const CreateGroup = () => {
         console.log(password + ", " + confirm);
         if (password !== confirm) {
             console.log("passwords do not match");
+            setErrorInfo('Passwords do not match');
             return;
         }
         axios.post('/api/teams/', {
@@ -31,7 +33,16 @@ const CreateGroup = () => {
             team_password: password,
             team_groups: [],
             team_users: [userInfo.url]
-        }).then(navigate('/profile'));
+        }).catch((error) => {
+            console.log(error);
+            return 0;
+        }).then(code => {
+            if (code !== 0) {
+                navigate('/profile');
+            } else {
+                setErrorInfo('Group identifier already exists');
+            }
+        });
     };
 
     return (
@@ -40,8 +51,8 @@ const CreateGroup = () => {
             <h2 style={{ marginBottom: "1em" }}>Create a new group</h2>
             <Form className="container-md" onSubmit={handleFormSubmit}>
                 <Form.Group style={{ maxWidth: '35%', margin: '0 auto' }} className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Group Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" />
+                    <Form.Label>Group Identifier</Form.Label>
+                    <Form.Control type="text" placeholder="Enter name" required />
                 </Form.Group>
 
                 <Form.Group style={{ maxWidth: '35%', margin: '0 auto' }} className="mb-3" controlId="formBasicPassword">
@@ -51,8 +62,11 @@ const CreateGroup = () => {
 
                 <Form.Group style={{ maxWidth: '35%', margin: '0 auto' }} className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control type="password" placeholder="Re-enter password" />
+                    <Form.Control type="password" placeholder="Re-enter password" required />
                 </Form.Group>
+
+                <p style={{color:'red'}}>{errorInfo}</p>
+                
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
