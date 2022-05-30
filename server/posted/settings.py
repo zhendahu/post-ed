@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-2li8q=^4dqeq1onrl1o^*jb_9gk+wvu$2ak(zq%!yjy77u=sbo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
 if DEBUG: 
     CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
@@ -47,6 +48,7 @@ REST_FRAMEWORK = {
 INSTALLED_APPS = [
     'posted_app',
     'user',
+    'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "corsheaders",
+    'posted_app'
 ]
 
 MIDDLEWARE = [

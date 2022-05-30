@@ -35,6 +35,7 @@ router.register(r'users', user_views.UserViewSet)
 router.register(r'groups', user_views.GroupViewSet)
 router.register(r'taskgroups', posted_views.TaskGroupViewSet)
 router.register(r'tasks', posted_views.TaskViewSet)
+router.register(r'teams', posted_views.TeamViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),

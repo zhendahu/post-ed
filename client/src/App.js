@@ -3,7 +3,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Button } from "react-bootstrap";
-import {TaskModal} from "./components/TaskModal.js"
+import { TaskModal } from "./components/TaskModal.js"
 import LoginModal from "./components/Login.js"
 import Task from "./components/Task.js"
 import TaskGroup from "./components/TaskGroup.js"
@@ -11,6 +11,10 @@ import SignUpModal from "./components/SignUp.js"
 import Home from "./components/Home.js";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import TaskPage from "./components/TaskPage.js"
+import UserProfile from "./components/UserProfile";
+import EditUserProfile from "./components/EditUserProfile"
+import CreateGroup from "./components/CreateGroup";
+import JoinGroup from "./components/JoinGroup";
 
 
 
@@ -23,6 +27,8 @@ import TaskPage from "./components/TaskPage.js"
 
 
 class App extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -54,8 +60,44 @@ class App extends React.Component {
               exact
               path="/register"
               element={
-                <div  id="login" className="home-background"> 
+                <div id="login" className="home-background">
                   <SignUpModal />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/profile/:id"
+              element={
+                <div id="profile" className="home-background">
+                  <UserProfile />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/profile/edit/:id"
+              element={
+                <div id="edit_profile" className="home-background">
+                  <EditUserProfile />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/creategroup"
+              element={
+                <div>
+                  <CreateGroup />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/joingroup"
+              element={
+                <div>
+                  <JoinGroup />
                 </div>
               }
             />

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Task from "./Task.js";
 import TaskModal from "./TaskModal.js";
 import TaskGroup from "./TaskGroup.js";
+import PostedNavbar from "./PostedNavbar.js";
 
 //functions for Task
 //STILL NEED TO CONNECT ENDPOINTS IN ORDER TO STORE THE REAL DATA
@@ -35,9 +36,7 @@ class TaskPage extends React.Component {
   render() {
       return(
         <div className="taskpage-background">
-        <h1>
-          <b>Post-Ed</b>
-        </h1>
+        <PostedNavbar />
         <TaskGroup title = "To Do" subtitle = "Thursday, May 26th" tasks = {fakeTaskData}></TaskGroup>
         </div>
       );

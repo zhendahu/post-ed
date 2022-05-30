@@ -25,7 +25,19 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    #permission_classes = [IsOwnerOrReadOnly]
+    # TODO: FINISH THIS
+    def patch(self, request):
+        try:
+            data = json.loads(request.body)
+            print(data)
+            user_obj = User.objects.get(id=data['id'])
+            user_obj.username = data['username']
+            user_obj.email = data['email']
+            user_obj.save()
+        except:
+            return Response(status=400)
+        return JsonResponse({'status':200})
 
     
 
@@ -36,4 +48,4 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
