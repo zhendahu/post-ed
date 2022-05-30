@@ -14,6 +14,7 @@ class SignUpModal extends React.Component {
       name: "Minrui Gui",
       group: "ucla",
       password: "123456",
+      confirmedPassword: "123456",
       email: "guiminrui215@gmail.com",
       usernamePrompt:
         "Please enter valid username with its length greater than 6.",
@@ -23,6 +24,10 @@ class SignUpModal extends React.Component {
     this.password = React.createRef();
     this.confirmedPassword = React.createRef();
     this.usernameRef = React.createRef();
+    this.fileUploadRef = React.createRef();
+    document.addEventListener("submit",(event)=>{
+      console.log("submit",event)
+    })
   }
 
   componentDidMount() {
@@ -41,18 +46,44 @@ class SignUpModal extends React.Component {
     confirm_password.onkeyup = validatePassword;
   }
 
+  submitUserInfo(image_url) {
+    let _this = this;
+    axios
+      .post("/api/users/", {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        groups: [],
+        image_url: image_url,
+      })
+      .then((response) => {
+        console.log(response);
+        _this.setState({
+          validated: false,
+        });
+        if (response.status == 201) {
+          this.setState({
+            goto: "/",
+          });
+        }
+
+      })
+      .catch(function (error) {
+        _this.usernameRef.current.setCustomValidity("Duplicated username");
+        _this.setState({
+          validated: true,
+          usernamePrompt: "Duplicated username",
+        });
+        console.log(error);
+      });
+  }
+
   render() {
     const handleSubmit = (event) => {
-      let _this = this;
+      event.preventDefault();
+      event.stopPropagation();
       const form = event.currentTarget;
-      var formData = new FormData();
-      var imagefile = document.querySelector("#file");
-      formData.append("image", imagefile.files[0]);
-      axios.post("upload_file", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      let _this = this;
       _this.usernameRef.current.setCustomValidity("");
       if (!form.checkValidity()) {
         this.setState({
@@ -61,35 +92,31 @@ class SignUpModal extends React.Component {
             "Please enter valid username with its length greater than 6.",
         });
       } else {
-        axios
-          .post("/api/users/", {
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
-            groups: [],
-          })
-          .then((response) => {
-            console.log(response);
-            _this.setState({
-              validated: false,
+        var formData = new FormData();
+        var imagefile = this.fileUploadRef.current;
+        if (imagefile.files.length) {
+          formData.append("image", imagefile.files[0]);
+          formData.append("username", this.state.username);
+          axios
+            .post("user/avatar_upload", formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then((res) => {
+              console.log("formdata",event.nativeEvent)
+             this.submitUserInfo(res.data.image_url);
+            })
+            .catch((err) => {
+              console.log("file err:", err);
             });
-            if (response.status == 201) {
-              this.setState({
-                goto: "/",
-              });
-            }
-          })
-          .catch(function (error) {
-            _this.usernameRef.current.setCustomValidity("Duplicated username");
-            _this.setState({
-              validated: true,
-              usernamePrompt: "Duplicated username",
-            });
-            console.log(error);
-          });
+        } else {
+          this.submitUserInfo("111");
+        }
       }
-      event.preventDefault();
-      event.stopPropagation();
+
+
+      return
     };
     const onchange = (event) => {
       this.setState({
@@ -105,7 +132,7 @@ class SignUpModal extends React.Component {
           validated={this.state.validated}
           onSubmit={handleSubmit}
         >
-          <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Group className="mb-3" controlId="formBasicUserName">
             <Form.Label>User Name</Form.Label>
             <Form.Control
               type="text"
@@ -133,7 +160,6 @@ class SignUpModal extends React.Component {
               required
               onChange={onchange}
               name="name"
-              required
             />
             <Form.Control.Feedback type="invalid">
               name can not be empty
@@ -142,7 +168,7 @@ class SignUpModal extends React.Component {
               looks good
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicGroup">
+          {/* <Form.Group className="mb-3" controlId="formBasicGroup">
             <Form.Label>Group</Form.Label>
             <Form.Control
               type="text"
@@ -151,7 +177,6 @@ class SignUpModal extends React.Component {
               required
               onChange={onchange}
               name="group"
-              required
             />
             <Form.Control.Feedback type="invalid">
               group can not be empty
@@ -159,13 +184,13 @@ class SignUpModal extends React.Component {
             <Form.Control.Feedback type="valid">
               looks good
             </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicGroup">
+          </Form.Group> */}
+          <Form.Group className="mb-3" controlId="formBasicAvatar">
             <Form.Label>Avatar</Form.Label>
             <Form.Control
               type="file"
+              ref={this.fileUploadRef}
               value={this.state.avatar}
-              required
               onChange={onchange}
               name="avatar"
               accept=".jpeg,.jpg,.png"

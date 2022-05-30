@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
+import jwt from "./utils/jwt.js"
 
 axios.defaults.baseURL = '//127.0.0.1:8000';
 
@@ -17,7 +18,10 @@ axios.interceptors.request.use(function (config) {
 });
 
 axios.interceptors.response.use(function (response) {
-
+  console.log("response")
+  if(jwt.getToken()){
+    
+  }
   return response;
 }, function (error) {
 

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include,path
 from rest_framework import routers
-from user import views
+from user import views as user_views
 from posted_app import views as posted_views
 
 #json web token configure
@@ -31,8 +31,8 @@ from posted_app import views as posted_views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+router.register(r'users', user_views.UserViewSet)
+router.register(r'groups', user_views.GroupViewSet)
 router.register(r'taskgroups', posted_views.TaskGroupViewSet)
 router.register(r'tasks', posted_views.TaskViewSet)
 
@@ -42,4 +42,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api-auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('user/', include('user.urls')),
 ]
