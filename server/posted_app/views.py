@@ -1,7 +1,10 @@
+from django.http import JsonResponse
+from rest_framework import permissions, viewsets
+from rest_framework.response import Response
+
 from .models import *
-from rest_framework import viewsets
-from rest_framework import permissions
 from .seralizers import *
+
 
 class TaskGroupViewSet(viewsets.ModelViewSet):
     """
@@ -23,4 +26,19 @@ class TeamViewSet(viewsets.ModelViewSet):
     """
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
+    def patch(self, request):
+        try:
+            import json
+            data = json.loads(request.body)
+            print(data)
+            user_obj = User.objects.get(id=data['id'])
+            print(user_obj)
+            team_obj = Team.objects.get(team_name=data['name'], team_password=data['password'])
+            print(team_obj)
+            team_obj.team_users.add(user_obj)
+            team_obj.save()
+            user_obj.save()
+        except:
+            return Response(status=400)
+        return JsonResponse({'status':200})
 

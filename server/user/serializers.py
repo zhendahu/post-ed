@@ -18,8 +18,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'image_url':{'required':False}
         }
     def create(self, validated_data):
-        user = User.objects.create_user(**{k:v for k,v in validated_data.items() if k!='groups'})
-        user.groups.set(validated_data["groups"])
+        user = User.objects.create_user(**{k:v for k,v in validated_data.items() if k!='groups' and k!='team_set'})
+        #user.groups.set(validated_data["groups"])
         return user
 
 
