@@ -30,8 +30,11 @@ axios.defaults.baseURL = "//127.0.0.1:8000";
 const SetupInterceptors = (navigate) => {
   axios.interceptors.request.use(
     function (config) {
-      console.log("request")
-      config.headers.Authorization = "Bearer "+jwt.getToken();
+      console.log("request",config)
+      let jwtString = jwt.getToken();
+      if(jwtString){
+        config.headers.Authorization = "Bearer "+jwtString
+        }
       return config;
     },
     function (error) {
