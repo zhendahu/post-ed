@@ -3,7 +3,7 @@ from user.models import User
 
 # Create your models here.
 class Team(models.Model):
-    team_name = models.CharField(max_length=25)
+    team_name = models.CharField(max_length=25,unique=True)
     team_password = models.CharField(max_length=25)
     team_users = models.ManyToManyField(User)
     created = models.DateTimeField(auto_now=True)

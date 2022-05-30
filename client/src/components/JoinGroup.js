@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const JoinGroup = () => {
     const [userInfo, setUserInfo] = useState(0);
+    const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
             console.log(user);
@@ -24,7 +25,16 @@ const JoinGroup = () => {
             id: userInfo.id,
             name: name,
             password: password
-        }).then(navigate('/profile'));
+        }).catch((error) => {
+            console.log(error);
+            return 0;
+        }).then(code => {
+            if (code !== 0) {
+                navigate('/profile');
+            } else {
+                setErrorInfo('Invalid group identifier or password');
+            }
+        });
     };
 
     return (
@@ -33,14 +43,15 @@ const JoinGroup = () => {
             <h2 style={{ marginBottom: "1em" }}>Join an existing group</h2>
             <Form className="container-md" onSubmit={handleFormSubmit}>
                 <Form.Group style={{ maxWidth: '35%', margin: '0 auto' }} className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Group Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter name" />
+                    <Form.Label>Group Identifier</Form.Label>
+                    <Form.Control type="text" placeholder="Enter name" required />
                 </Form.Group>
 
                 <Form.Group style={{ maxWidth: '35%', margin: '0 auto' }} className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Group Password</Form.Label>
-                    <Form.Control type="password" placeholder="Enter password" />
+                    <Form.Control type="password" placeholder="Enter password" required />
                 </Form.Group>
+                <p style={{color:'red'}}>{errorInfo}</p>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
