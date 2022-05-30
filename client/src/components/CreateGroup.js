@@ -1,35 +1,37 @@
-import PostedNavbar from "./PostedNavbar";
-import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import jwt from "../utils/jwt.js";
+import PostedNavbar from "./PostedNavbar";
+import { useNavigate } from "react-router-dom";
 
 const CreateGroup = () => {
+    const [userInfo, setUserInfo] = useState(0);
+    useEffect(() => {
+        jwt.getUser().then(user => {
+            console.log(user);
+            setUserInfo(user);
+        })
+    }, [userInfo.url]);
+
+    const navigate = useNavigate();
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const name = event.target[0];
-        const password = event.target[1];
-        const confirm = event.target[2];
+        const name = event.target[0].value;
+        const password = event.target[1].value;
+        const confirm = event.target[2].value;
+        console.log(password + ", " + confirm);
         if (password !== confirm) {
             console.log("passwords do not match");
             return;
         }
-        fetch("http://localhost:8000/api/teams/", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'same-origin', // include, *same-origin, omit
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            redirect: 'follow', // manual, *follow, error
-            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: `{
-                "team_name": "${name}",
-                "team_password": "${password}",
-                "team_groups": []
-            }` // body data type must match "Content-Type" header
-        }).then(res => res.json()).then(data => console.log(data));
+        axios.post('/api/teams/', {
+            team_name: name,
+            team_password: password,
+            team_groups: [],
+            team_users: [userInfo.url]
+        }).then(navigate('/profile'));
     };
 
     return (

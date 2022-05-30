@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from user.models import User
 
 # Create your models here.
 class Team(models.Model):
     team_name = models.CharField(max_length=25)
     team_password = models.CharField(max_length=25)
+    team_users = models.ManyToManyField(User)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
 

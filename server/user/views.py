@@ -34,9 +34,11 @@ class UserViewSet(viewsets.ModelViewSet):
     # TODO: FINISH THIS
     def patch(self, request):
         try:
+            import json
             data = json.loads(request.body)
             print(data)
             user_obj = User.objects.get(id=data['id'])
+            print(user_obj)
             user_obj.username = data['username']
             user_obj.email = data['email']
             user_obj.save()
