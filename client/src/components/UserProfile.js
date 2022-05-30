@@ -3,6 +3,7 @@ import { Button, ListGroup, Image } from "react-bootstrap";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import './UserProfile.css';
+import PostedNavbar from "./PostedNavbar.js";
 
 
 function UserProfile(props) {
@@ -26,7 +27,7 @@ function UserProfile(props) {
 
     return (
         <div className="profile-background">
-            <h1>Post-Ed</h1>
+            <PostedNavbar />
             <h2>{userInfo.username}'s Profile</h2>
 
             <Image src="/logo192.png"></Image>
