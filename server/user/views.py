@@ -19,9 +19,9 @@ def fileUpload(request, *args, **kwargs):
         for chunk in request.FILES["image"].chunks():
             destination.write(chunk)
     return JsonResponse({'image_url': "avatars/"+request.data["username"]+extension})
+
 @api_view(['GET'])
 def currentUser(request):
-
     return JsonResponse({"userId":request.user.id})
 
 class UserViewSet(viewsets.ModelViewSet):

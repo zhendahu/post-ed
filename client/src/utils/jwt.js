@@ -48,4 +48,9 @@ function getUser(){
       });
 }
 
-export default {login, getToken, setToken ,getUser};
+function clearToken(){
+  jwt = "";
+  localStorage.clear("token")
+}
+
+export default {clearToken,login, getToken, setToken ,getUser};

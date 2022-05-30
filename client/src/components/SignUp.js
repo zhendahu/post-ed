@@ -4,6 +4,7 @@ import "./Login.css";
 import axios from "axios";
 import "./Home.css";
 import { Navigate } from "react-router-dom";
+import jwt from "../utils/jwt.js"
 
 class SignUpModal extends React.Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class SignUpModal extends React.Component {
         password: this.state.password,
         groups: [],
         image_url: image_url,
+        team_set:[]
       })
       .then((response) => {
         console.log(response);
@@ -97,6 +99,7 @@ class SignUpModal extends React.Component {
         if (imagefile.files.length) {
           formData.append("image", imagefile.files[0]);
           formData.append("username", this.state.username);
+          jwt.clearToken();
           axios
             .post("user/avatar_upload", formData, {
               headers: {
