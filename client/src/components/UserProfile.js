@@ -19,7 +19,6 @@ function UserProfile(props) {
             if (userInfo.team_set && userInfo.team_set.length === 0) {
                 userInfo.team_set = 'None';
             } else {
-                //setTeamsInfo(new Array(userInfo.team_set.length));
                 for (let i = 0; i < userInfo.team_set.length; i++) {
                     axios.get(userInfo.team_set[i]).then(res => teamsInfo[i] = res.data.team_name);
                 }
