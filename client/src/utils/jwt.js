@@ -31,4 +31,21 @@ function login(username, password) {
   });
 }
 
-export default {login, getToken, setToken };
+function getUser(){
+    return new Promise((resolve, reject) => {
+        axios
+          .get("/user/currentUser")
+          .then((res) => {              
+              axios.get(`/api/users/${res.data.userId}/`).then((res1)=>{
+                  resolve(res1.data)
+              }).catch(err=>{
+                  reject(err)
+              })
+          })
+          .catch((err) => {
+              reject(err)
+          });
+      });
+}
+
+export default {login, getToken, setToken ,getUser};

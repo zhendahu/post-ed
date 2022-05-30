@@ -19,13 +19,18 @@ def fileUpload(request, *args, **kwargs):
         for chunk in request.FILES["image"].chunks():
             destination.write(chunk)
     return JsonResponse({'image_url': "avatars/"+request.data["username"]+extension})
+@api_view(['GET'])
+def currentUser(request):
+
+    return JsonResponse({"userId":request.user.id})
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    #permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     # TODO: FINISH THIS
     def patch(self, request):
         try:
