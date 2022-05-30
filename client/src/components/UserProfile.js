@@ -28,7 +28,7 @@ function UserProfile(props) {
         } catch (e) {
             console.log(e);
         }
-    }, [userInfo.username, userInfo.email, teamsInfo]);
+    }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
     const navigate = useNavigate();
     console.log(teamsInfo)

@@ -17,3 +17,4 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
         model = Team
         fields = ['team_name', 'team_password', 'team_groups', 'team_users']
 
+
