@@ -56,6 +56,7 @@ class SignUpModal extends React.Component {
         password: this.state.password,
         groups: [],
         image_url: image_url,
+        last_name:this.state.name,
         team_set: [],
       })
       .then((response) => {
@@ -231,7 +232,7 @@ class SignUpModal extends React.Component {
               <Form.Control
                 ref={this.password}
                 type="password"
-                minLength={6}
+                minLength="6"
                 placeholder="Password"
                 value={this.state.password}
                 onChange={onchange}
