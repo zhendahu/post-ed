@@ -125,6 +125,10 @@ class LoginModal extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+
+          <Button variant="primary" type="button">
+            Sign up
+          </Button>
         </Form>
       </div>
     );
