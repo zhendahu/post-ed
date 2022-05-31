@@ -3,6 +3,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { Card, Button } from 'react-bootstrap';
 import EditTaskModal from "./EditTaskModal";
 import './Task.css'
+import { StyledEngineProvider } from "@mui/material";
+import TrashBin from "../static/images/trashbin.png";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -19,15 +21,21 @@ import './Task.css'
 const Task=(props)=>{
     const [isChecked, setIsChecked] = useState(false);
     const style = {
-        height: 20,
-        width: 75,
-        fontSize: 10,
-        padding: 0
-
+        height: 25,
+        width: 100,
+        fontSize: 12,
+        padding: 0,
+        position: "absolute",
+        left:    40,
+        bottom:10,
+     
       };
     return(
-        <div >
-                <p className='task-title'>{props.data.title}</p>
+        <Card style={{border: "1px solid grey", borderRadius:"50px 50px"}}>
+                <Card.Title style={{"text-align": "center", "font-size": "16px"}}>{props.data.title}</Card.Title>
+                <br></br>
+                <br></br>
+
                 <Button
                 variant="outline-primary"
                 onClick={() => this.openEditTaskModal()}
@@ -35,7 +43,17 @@ const Task=(props)=>{
                 className = 'task-button'
                 >
                     Open Task </Button>
-     </div>
+                    <Button
+                  variant="outline-danger"
+                  size="sm"
+                  style={{ position: "absolute",
+                    right:    25,
+                    bottom:   10}}
+                  onClick={() => this.removeTask()}
+                >
+                  <img src={TrashBin} alt="add item" width="10" />
+                </Button>
+     </Card>
         );
 }
 
