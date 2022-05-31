@@ -56,9 +56,9 @@ function UserProfile(props) {
             </div>
             <br></br>
             <ListGroup className="container" style={{maxWidth: '45%'}}>
-                <ListGroup.Item>Name: {userInfo.username} </ListGroup.Item>
-                <ListGroup.Item>Email: {userInfo.email} </ListGroup.Item>
-                <ListGroup.Item>Groups: 
+                <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
+                <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
+                <ListGroup.Item><h3>Groups</h3> 
                     <ListGroup>
                         {teamsInfo.map((value, index) => {
                             return (
