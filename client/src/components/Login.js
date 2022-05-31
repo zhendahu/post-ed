@@ -79,11 +79,13 @@ class LoginModal extends React.Component {
       event.stopPropagation();
     };
     return (
+      <div >      <h1>
+      <b>Post-Ed</b>
+    </h1> 
       <div id="form">
-        {this.state.goto && <Navigate to={this.state.goto} replace={true} />}
-        <Form
+        {this.state.goto && <Navigate to={this.state.goto} replace={false} />}
+        <Form style={{padding:"1rem"}}
           noValidate
-          style={{ margin: "1rem" }}
           validated={this.state.validated}
           onSubmit={handleSubmit}
         >
@@ -133,6 +135,7 @@ class LoginModal extends React.Component {
           </Button>
           </Link>
         </Form>
+      </div>
       </div>
     );
   }
