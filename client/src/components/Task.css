@@ -1,8 +1,7 @@
-.task-button{  
-    font-size: 5px;
-    height:25px;
-    width:90px;
-  }
 .task-title{
     text-align:center;
+    font-size : 10px;
+}
+.task{
+    border: solid black;
 }

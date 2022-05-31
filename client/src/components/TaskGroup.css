@@ -1,0 +1,9 @@
+.task-group-title{
+    font-size : 30px;
+}
+.remove-button{
+    position: absolute;
+    right:    0;
+    bottom:   0;
+    color:black
+}

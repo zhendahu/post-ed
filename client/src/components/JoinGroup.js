@@ -22,6 +22,7 @@ const JoinGroup = () => {
         const name = event.target[0].value;
         const password = event.target[1].value;
         axios.patch('/api/teams/', {
+            should_leave: false,
             id: userInfo.id,
             name: name,
             password: password

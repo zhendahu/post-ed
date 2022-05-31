@@ -49,6 +49,7 @@ function getUser(){
 }
 
 function clearToken(){
+  console.log("clean the token")
   jwt = "";
   localStorage.clear("token")
 }

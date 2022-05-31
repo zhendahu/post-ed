@@ -1,3 +1,6 @@
 .task-background{
     background: linear-gradient(to right, aqua, fuchsia);
 }
+.group-title{
+    font-size : 40px
+}

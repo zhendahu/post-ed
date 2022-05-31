@@ -31,13 +31,23 @@ function UserProfile(props) {
 
     const navigate = useNavigate();
     console.log(teamsInfo)
-    
+
+    const handleLeaveGroup = (groupName) => {
+        console.log(groupName)
+        axios.patch('/api/teams/', {
+            should_leave: true,
+            id: userInfo.id,
+            name: groupName,
+            password: 'no need'
+        }).then(window.location.reload(false));
+    }
+
     return (
         <div className="profile-background">
             <PostedNavbar />
             <h2>{userInfo.username}'s Profile</h2>
 
-            <Image src={userInfo.image_url}></Image>
+            <Image src={userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
 
             <div>
                 <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
@@ -45,14 +55,14 @@ function UserProfile(props) {
                 <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "2px" }}>Join Group</Button>
             </div>
             <br></br>
-            <ListGroup className="container" style={{maxWidth: '45%'}}>
-                <ListGroup.Item>Name: {userInfo.username} </ListGroup.Item>
-                <ListGroup.Item>Email: {userInfo.email} </ListGroup.Item>
-                <ListGroup.Item>Groups: 
+            <ListGroup className="container" style={{ maxWidth: '45%' }}>
+                <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
+                <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
+                <ListGroup.Item><h3>Groups</h3>
                     <ListGroup>
                         {teamsInfo.map((value, index) => {
                             return (
-                                <ListGroup.Item key={index}>{value}</ListGroup.Item>
+                                <ListGroup.Item key={index}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
                             );
                         })}
                     </ListGroup>

@@ -47,8 +47,12 @@ const PostedNavbar = () => {
               {teamsInfo !== 'None' && <NavDropdown.Divider></NavDropdown.Divider>}
               <NavDropdown.Item href="/creategroup">Create Group</NavDropdown.Item>
               <NavDropdown.Item href="/joingroup">Join Group</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">Leave Group</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Nav>
+      <Nav.Link  href="/login">Logout</Nav.Link>
+    </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
