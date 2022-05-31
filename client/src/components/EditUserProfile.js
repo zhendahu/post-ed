@@ -7,7 +7,7 @@ import PostedNavbar from "./PostedNavbar.js";
 import './UserProfile.css';
 
 
-function EditUserProfile(props) {
+function EditUserProfile() {
     const [userInfo, setUserInfo] = useState(0);
     const [checkedAvatar, setCheckedAvatar] = useState(-1);
     const [errorInfo, setErrorInfo] = useState('');

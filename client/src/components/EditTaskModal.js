@@ -26,35 +26,40 @@ class EditTaskModal extends React.Component {
     });
   }
 
+  handleSubmit(){
+    console.log('hi')
+  }
+
   render() {
     return (
       <Modal show={this.props.show} onHide={() => this.props.onHide()}>
         <Modal.Header closeButton>
-          <Modal.Title>Title</Modal.Title>
+          <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>description</Form.Label>
-              <Form.Control type="text" placeholder="description" autoFocus />
-            </Form.Group>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>assignments</Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control as="textarea" rows={3} />
             </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => this.props.onHide()}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => this.props.onHide()}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Assignee</Form.Label>
+
+            <Form.Select aria-label="Default select example">
+            <option>Assign this task to...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            </Form.Select>
+            </Form.Group>
+            <Button variant="primary" type='submit'>
             Save Changes
           </Button>
-        </Modal.Footer>
+          </Form>
+        </Modal.Body>
       </Modal>
     );
   }

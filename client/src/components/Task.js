@@ -20,6 +20,15 @@ import { useDrag } from "react-dnd";
 
 const Task=(props)=>{
 
+
+    const [show, setShow] = useState(false);
+
+    const style = {
+        height: 25,
+        width: 100,
+        fontSize: 12,
+        padding: 0,
+
   const [{isDragging}, drag] = useDrag(() => ({
     type: ItemTypes.TASK,
     collect: monitor => ({
@@ -36,8 +45,17 @@ const Task=(props)=>{
         padding: 0
 
       };
+
+      function onHide(){
+          setShow(false)
+      }
+
+      function openEditTaskModal(){
+        setShow(true)
+      }
+
     return(
-        <div 
+         <div 
           ref={drag}
           style={{
             opacity: isDragging ? 0.5 : 1,
@@ -46,14 +64,32 @@ const Task=(props)=>{
             cursor: 'move',
           }}
         >
-                <p className='task-title'>{props.data.title}</p>
+        <Card className="shadow p-3 mb-5 bg-white rounded"
+        style={{border: "1px solid grey", borderRadius:"50px 50px"}} >
+                <EditTaskModal show ={show} onHide = {() => onHide()} title={props.data.title}></EditTaskModal>
+                <Card.Title style={{"text-align": "center", "font-size": "20px"}}>{props.data.title}</Card.Title>
+                <br></br>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+     
                 <Button
                 variant="outline-primary"
-                onClick={() => this.openEditTaskModal()}
+                onClick={() => openEditTaskModal()}
                 style = {style}
                 className = 'task-button'
                 >
-                    Open Task </Button>
+                    Open Task </Button> 
+
+                    <Button
+                  variant="outline-danger"
+                  size="sm"
+                
+                  onClick={() => this.removeTask()}
+                >
+                  <img src={TrashBin} alt="add item" width="10" />
+                </Button>
+                </div>
+     </Card>
+
      </div>
         );
 }
