@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Checkbox from '@mui/material/Checkbox';
 import { Card, Button } from 'react-bootstrap';
 import EditTaskModal from "./EditTaskModal";
+import './Task.css'
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -17,20 +18,24 @@ import EditTaskModal from "./EditTaskModal";
 
 const Task=(props)=>{
     const [isChecked, setIsChecked] = useState(false);
+    const style = {
+        height: 20,
+        width: 75,
+        fontSize: 10,
+        padding: 0
+
+      };
     return(
-        <Card style={{ width: '25rem' }}>
-            <Card.Body>
-                <Card.Title>{props.data.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.data.author}</Card.Subtitle>
-                <Card.Text>{props.data.description}</Card.Text>
-                <Checkbox onChange={(event)=>setIsChecked(!isChecked)}/>
+        <div >
+                <p className='task-title'>{props.data.title}</p>
                 <Button
                 variant="outline-primary"
                 onClick={() => this.openEditTaskModal()}
+                style = {style}
+                className = 'task-button'
                 >
                     Open Task </Button>
-            </Card.Body>
-        </Card>
+     </div>
         );
 }
 
