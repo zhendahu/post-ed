@@ -83,6 +83,7 @@ class App extends React.Component {
     });
   }
   render() {
+    // TODO: example page for home??
     return (
       <div className="App">
         <BrowserRouter>
