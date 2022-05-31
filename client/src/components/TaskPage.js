@@ -7,34 +7,35 @@ import PostedNavbar from "./PostedNavbar";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from "axios";
+import { lighten } from "@mui/material";
 
 function TaskPage(props) {
-  const [taskGroupInfo, setTaskGroupInfo] = useState([]);
-  let [taskInfo, setTaskInfo] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  let [taskGroupObjects, setTaskGroupObjects] = useState([]);
+
+  const getData = async () => {
+    const taskGroupArray = [];
+    const teamGroupsData = (await axios('/api/teams/1')).data.team_groups;
+    let index = 0;
+    for (const taskGroup of teamGroupsData) {
+      const taskArray = []
+      const tasksGroupsData = (await axios(taskGroup)).data;
+      for (const tasks of tasksGroupsData.group_tasks) {
+        const task = (await axios(tasks)).data.task_name;
+        taskArray.push({
+          title: task
+        });
+      }
+      taskGroupArray.push(<Col>{<TaskGroup key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} />} <br></br></Col>)
+      index++;
+    }
+    setTaskGroupObjects(taskGroupArray);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    axios.get('/api/teams/1/').then(res => {
-      for (let i = 0; i < res.data.team_groups.length; i++) {
-        axios.get(res.data.team_groups[i]).then(res => {
-          taskGroupInfo[i] = res.data.taskgroup_name;
-          taskInfo = new Array(res.data.group_tasks.length)
-          taskInfo.fill([])
-          for (let j = 0; j < res.data.group_tasks.length; j++) {
-            axios.get(res.data.group_tasks[j]).then(res => {
-              taskInfo[i][j] = {
-                title: res.data.task_name
-              };
-            })
-          }
-        }).then(() => {
-          setTaskGroupInfo(taskGroupInfo);
-          setTaskInfo(taskInfo);
-          setLoading(false);
-        })
-      }
-    })
-  }, [taskInfo.length, taskGroupInfo.length]);
+    getData();
+  }, [taskGroupObjects.length]);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -44,12 +45,7 @@ function TaskPage(props) {
         <h1 className="group-title">{props.group}</h1>
         {!isLoading && <Row xs={1} md={3} className="task-collection">
 
-          {taskGroupInfo.map((taskGroup, index) => {
-
-            return (
-              <Col>{<TaskGroup title={taskGroup} tasks={taskInfo[index]} />} <br></br></Col>
-            )
-          })}
+          {taskGroupObjects}
 
         </Row>}
 
