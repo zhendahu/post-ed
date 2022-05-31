@@ -41,6 +41,7 @@ class UserViewSet(viewsets.ModelViewSet):
             print(user_obj)
             user_obj.username = data['username']
             user_obj.email = data['email']
+            user_obj.image_url = data['avatar']
             user_obj.save()
         except:
             return Response(status=400)
