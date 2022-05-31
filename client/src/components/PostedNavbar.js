@@ -50,6 +50,9 @@ const PostedNavbar = () => {
               <NavDropdown.Item href="/profile">Leave Group</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Nav>
+      <Nav.Link onClick={jwt.clearToken()} href="/login">Logout</Nav.Link>
+    </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
