@@ -3,8 +3,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { Card, Button } from 'react-bootstrap';
 import EditTaskModal from "./EditTaskModal";
 import './Task.css'
-import { StyledEngineProvider } from "@mui/material";
-import TrashBin from "../static/images/trashbin.png";
+import { ItemTypes } from "./DragAndDrop";
+import { useDrag } from "react-dnd";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -28,6 +28,22 @@ const Task=(props)=>{
         width: 100,
         fontSize: 12,
         padding: 0,
+
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: ItemTypes.TASK,
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+
+  }))
+
+    const [isChecked, setIsChecked] = useState(false);
+    const style = {
+        height: 20,
+        width: 75,
+        fontSize: 10,
+        padding: 0
+
       };
 
       function onHide(){
@@ -39,12 +55,22 @@ const Task=(props)=>{
       }
 
     return(
+         <div 
+          ref={drag}
+          style={{
+            opacity: isDragging ? 0.5 : 1,
+            fontSize: 25,
+            fontWeight: 'bold',
+            cursor: 'move',
+          }}
+        >
         <Card className="shadow p-3 mb-5 bg-white rounded"
         style={{border: "1px solid grey", borderRadius:"50px 50px"}} >
                 <EditTaskModal show ={show} onHide = {() => onHide()} title={props.data.title}></EditTaskModal>
                 <Card.Title style={{"text-align": "center", "font-size": "20px"}}>{props.data.title}</Card.Title>
                 <br></br>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
+     
                 <Button
                 variant="outline-primary"
                 onClick={() => openEditTaskModal()}
@@ -63,6 +89,8 @@ const Task=(props)=>{
                 </Button>
                 </div>
      </Card>
+
+     </div>
         );
 }
 

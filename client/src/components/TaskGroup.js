@@ -1,57 +1,84 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ListGroup, Button, Card, ToggleButton } from "react-bootstrap";
+import TrashBin from "../static/images/trashbin.png";
 import Task from "./Task.js";
 import TaskModal from "./TaskModal.js";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import jwt from "../utils/jwt";
 
-export default class TaskGroup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false
-    };
-  }
-  addTask() {
-  
-    this.setState({
-      show: true
-    });
+
+function TaskGroup (props) {
+
+  const [show, setShow] = useState(false)
+
+  const addTask = () => {
+    setShow(true)
   }
   //INCOMPLETE
-  removeTask() {
+  const removeTask = () => {
     console.log("Goodbye World!");
   }
   
-  onHide(){
-    this.setState({
-      show: false,
-    });
+  const onHide = () => {
+    setShow(false)
   }
 
-  render() {
-    
+  const taskRef = useRef();
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+
+  const getPosition = () => {
+    const x = taskRef.current.offsetLeft;
+    setX(x);
+
+    const y = taskRef.current.offsetTop;
+    setY(y);
+  };
+
+  useEffect(() => {
+    getPosition();
+  }, [x, y]);
+
+  console.log("x: ")
+  console.log(x)
+  console.log("y: ")
+  console.log(y)
+
     return (
-      <Card className="text-center">
-        <Card.Body>
-          <Card.Title className='task-group-title'>{this.props.title}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            {this.props.subtitle}
-          </Card.Subtitle>
-          <TaskModal show ={this.state.show} onHide = {() => this.onHide()}></TaskModal>
-          <ListGroup className="list-group-flush" bg="dark">
-            {this.props.tasks.map((task) => (
-              <div>
-              <ListGroup.Item style={{border: "1px solid white", borderRadius:"5%"}}>
-                <Task data = {task}> </Task>
-              </ListGroup.Item>
-              </div>
-            ))}
-          </ListGroup>
-          <ToggleButton onClick={() => this.addTask()} variant="success">
-            {" "}
-            + New Task{" "}
-          </ToggleButton>
-        </Card.Body>
-      </Card>
+
+      // <DndProvider backend={HTML5Backend}>
+        <Card className="text-center" ref={taskRef}>
+          <Card.Body>
+            <Card.Title>{props.title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {props.subtitle}
+            </Card.Subtitle>
+            <TaskModal show = {show} onHide = {() => onHide()}></TaskModal>
+            <ListGroup className="list-group-flush" bg="dark">
+              {props.tasks.map((task) => (
+                <ListGroup.Item>
+                  <Task data = {task}> </Task>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Button
+                    variant="outline-danger"
+                    size="sm"
+                    onClick={() => removeTask()}
+                  >
+                    <img src={TrashBin} alt="add item" width="10" />
+                  </Button>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <br></br>
+            <ToggleButton onClick={() => addTask()} variant="success">
+              {" "}
+              + New Task{" "}
+            </ToggleButton>
+          </Card.Body>
+        </Card>
+      // </DndProvider>
     );
-  }
 }
+
+export default TaskGroup

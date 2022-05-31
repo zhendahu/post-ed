@@ -2,11 +2,13 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import jwt from "../utils/jwt.js";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
 const PostedNavbar = () => {
   const [userInfo, setUserInfo] = useState(0);
   const [teamsInfo, setTeamsInfo] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     jwt.getUser().then(user => {
       console.log(user);
@@ -26,7 +28,15 @@ const PostedNavbar = () => {
     }
   }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
-
+  const handleGroupClick = (value) => {
+    axios.get('/api/teams/').then(res => {
+      for (const team of res.data.results) {
+        if (team.team_name === value) {
+          navigate(`/group/${team.id}`)
+        }
+      }
+    })
+  }
 
   return (
     <Navbar bg="light" expand="lg">
@@ -41,13 +51,17 @@ const PostedNavbar = () => {
             <NavDropdown title="Groups" id="basic-nav-dropdown">
               {teamsInfo !== 'None' && teamsInfo.map((value, index) => {
                 return (
-                  <NavDropdown.Item key={index}>{value}</NavDropdown.Item>
+                  <NavDropdown.Item key={index} onClick={() => handleGroupClick(value)}>{value}</NavDropdown.Item>
                 );
               })}
               {teamsInfo !== 'None' && <NavDropdown.Divider></NavDropdown.Divider>}
               <NavDropdown.Item href="/creategroup">Create Group</NavDropdown.Item>
               <NavDropdown.Item href="/joingroup">Join Group</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">Leave Group</NavDropdown.Item>
             </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/login">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
