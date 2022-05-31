@@ -4,8 +4,9 @@ import "./Login.css";
 import "./Home.css";
 import jwt from "../utils/jwt.js"
 
-import axios from "axios";
 import { Navigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 class LoginModal extends React.Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class LoginModal extends React.Component {
     this.usernameRef = React.createRef();
     this.passwordRef = React.createRef();
     this.state = {
-      username: "q1251640657",
-      password: "123456",
+      username: "",
+      password: "",
       goto: "",
       validated: false,
       usernamePrompt: "username can not be empty",
@@ -22,6 +23,7 @@ class LoginModal extends React.Component {
     };
   }
   componentDidMount() {
+    jwt.clearToken()
   }
   render() {
     const onchange = (event) => {
@@ -125,10 +127,11 @@ class LoginModal extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-
-          <Button variant="primary" type="button">
-            Sign up
+          <Link style={{"float":"right"}} to="/register">
+          <Button variant="light" type="button">
+          Sign up
           </Button>
+          </Link>
         </Form>
       </div>
     );

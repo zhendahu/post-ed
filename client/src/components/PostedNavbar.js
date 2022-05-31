@@ -51,7 +51,7 @@ const PostedNavbar = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-      <Nav.Link onClick={jwt.clearToken()} href="/login">Logout</Nav.Link>
+      <Nav.Link  href="/login">Logout</Nav.Link>
     </Nav>
         </Navbar.Collapse>
       </Container>

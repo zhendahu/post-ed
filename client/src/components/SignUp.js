@@ -5,18 +5,18 @@ import axios from "axios";
 import "./Home.css";
 import { Navigate } from "react-router-dom";
 import jwt from "../utils/jwt.js"
-
+import { Link } from "react-router-dom";
 class SignUpModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       validated: false,
-      username: "q1251640657",
-      name: "Minrui Gui",
-      group: "ucla",
-      password: "123456",
-      confirmedPassword: "123456",
-      email: "guiminrui215@gmail.com",
+      username: "",
+      name: "",
+      group: "",
+      password: "",
+      confirmedPassword: "",
+      email: "",
       usernamePrompt:
         "Please enter valid username with its length greater than 6.",
       avatar: "",
@@ -262,6 +262,12 @@ class SignUpModal extends React.Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+
+          <Link style={{"float":"right"}} to="/login">
+          <Button variant="light" type="button">
+          Sign in
+          </Button>
+          </Link>
           {/* <Button variant="primary" type="submit">
             Return
           </Button> */}
