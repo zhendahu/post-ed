@@ -4,6 +4,9 @@ import TaskGroup from "./TaskGroup";
 import "./TaskGroup.js";
 import './TaskPage.css'
 import PostedNavbar from "./PostedNavbar"
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 const fakeTaskData = [{
   title: "Finish 35L Project",
   author: "Melissa Chen",
@@ -30,19 +33,21 @@ export default class TaskPage extends Component {
   render() {
   
     return (
-      <div className="task-background">
-        <PostedNavbar />
-        <h1 className="task-title">Tasks:</h1>
-        <Row xs={1} md={3} className="task-collection">
-    
-          {TaskGroups.map((TaskGroup) => {
-           
-            return(
-            <Col>{TaskGroup} <br></br></Col>
-            )
-          })}
-        </Row>
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div className="task-background">
+          <PostedNavbar />
+          <h1 className="task-title">Tasks:</h1>
+          <Row xs={1} md={3} className="task-collection">
+      
+            {TaskGroups.map((TaskGroup) => {
+            
+              return(
+              <Col>{TaskGroup} <br></br></Col>
+              )
+            })}
+          </Row>
+        </div>
+      </DndProvider>
     );
   }
 }
