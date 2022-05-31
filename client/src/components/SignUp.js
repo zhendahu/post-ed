@@ -65,7 +65,7 @@ class SignUpModal extends React.Component {
         });
         if (response.status == 201) {
           this.setState({
-            goto: "/",
+            goto: "/login",
           });
         }
 
@@ -248,6 +248,7 @@ class SignUpModal extends React.Component {
               minLength="6"
               placeholder="Password"
               required
+              name="confirmedPassword"
               value={this.state.confirmedPassword}
               onChange={onchange}
             />
