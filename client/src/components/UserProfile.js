@@ -31,6 +31,16 @@ function UserProfile(props) {
 
     const navigate = useNavigate();
     console.log(teamsInfo)
+
+    const handleLeaveGroup = (groupName) => {
+        console.log(groupName)
+        axios.patch('/api/teams/', {
+            should_leave: true,
+            id: userInfo.id,
+            name: groupName,
+            password: 'no need'
+        }).then(window.location.reload(false));
+    }
     
     return (
         <div className="profile-background">
@@ -52,7 +62,7 @@ function UserProfile(props) {
                     <ListGroup>
                         {teamsInfo.map((value, index) => {
                             return (
-                                <ListGroup.Item key={index}>{value}</ListGroup.Item>
+                                <ListGroup.Item key={index}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
                             );
                         })}
                     </ListGroup>

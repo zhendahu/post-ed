@@ -29,6 +29,7 @@ const CreateGroup = () => {
             return;
         }
         axios.post('/api/teams/', {
+            should_leave: false,
             team_name: name,
             team_password: password,
             team_groups: [],

@@ -33,11 +33,18 @@ class TeamViewSet(viewsets.ModelViewSet):
             print(data)
             user_obj = User.objects.get(id=data['id'])
             print(user_obj)
-            team_obj = Team.objects.get(team_name=data['name'], team_password=data['password'])
-            print(team_obj)
-            team_obj.team_users.add(user_obj)
-            team_obj.save()
-            user_obj.save()
+            if not data['should_leave']:
+                team_obj = Team.objects.get(team_name=data['name'], team_password=data['password'])
+                print(team_obj)
+                team_obj.team_users.add(user_obj)
+                team_obj.save()
+                user_obj.save()
+            else:
+                team_obj = Team.objects.get(team_name=data['name'])
+                print(team_obj)
+                team_obj.team_users.remove(user_obj)
+                team_obj.save()
+                user_obj.save()
         except:
             return Response(status=400)
         return JsonResponse({'status':200})
