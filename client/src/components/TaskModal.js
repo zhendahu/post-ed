@@ -25,13 +25,17 @@ class TaskModal extends React.Component {
     return (
       <Modal show={this.props.show} onHide={() => this.props.onHide()}>
         <Modal.Header closeButton>
-          <Modal.Title>Title</Modal.Title>
+          <Modal.Title>Create a New Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>description</Form.Label>
-              <Form.Control type="text" placeholder="description" autoFocus />
+              <Form.Label>Task Name</Form.Label>
+              <Form.Control type="text" placeholder="Enter name" autoFocus />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Description</Form.Label>
+              <Form.Control type="text" placeholder="Enter description" autoFocus />
             </Form.Group>
             <Form.Group
               className="mb-3"

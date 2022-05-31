@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 //import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -9,7 +9,7 @@ import Task from "./components/Task.js";
 import TaskGroup from "./components/TaskGroup.js";
 import SignUpModal from "./components/SignUp.js";
 import Home from "./components/Home.js";
-import { Routes, Route, BrowserRouter ,useNavigate} from "react-router-dom";
+import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import TaskPage from "./components/TaskPage.js";
 import UserProfile from "./components/UserProfile";
 import EditUserProfile from "./components/EditUserProfile";
@@ -30,11 +30,11 @@ axios.defaults.baseURL = "//127.0.0.1:8000";
 const SetupInterceptors = (navigate) => {
   axios.interceptors.request.use(
     function (config) {
-      console.log("request",config)
+      console.log("request", config)
       let jwtString = jwt.getToken();
-      if(jwtString){
-        config.headers.Authorization = "Bearer "+jwtString
-        }
+      if (jwtString) {
+        config.headers.Authorization = "Bearer " + jwtString
+      }
       return config;
     },
     function (error) {
@@ -48,9 +48,9 @@ const SetupInterceptors = (navigate) => {
       return response;
     },
     function (error) {
-      console.log("error",error);
-      if(error.response.status==401){
-        navigate("/login",{replace:true})
+      console.log("error", error);
+      if (error.response.status == 401) {
+        navigate("/login", { replace: true })
       }
       return Promise.reject(error);
     }
@@ -59,12 +59,12 @@ const SetupInterceptors = (navigate) => {
 
 function NavigateFunctionComponent(props) {
   let navigate = useNavigate();
-  const [ran,setRan] = useState(false);
+  const [ran, setRan] = useState(false);
 
-  {/* only run setup once */}
-  if(!ran){
-     SetupInterceptors(navigate);
-     setRan(true);
+  {/* only run setup once */ }
+  if (!ran) {
+    SetupInterceptors(navigate);
+    setRan(true);
   }
   return <></>;
 }
@@ -86,7 +86,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-        {<NavigateFunctionComponent />}
+          {<NavigateFunctionComponent />}
           <Routes>
             <Route exact path="/" element={<TaskPage group="35L" />} />
             <Route
@@ -140,6 +140,15 @@ class App extends React.Component {
               element={
                 <div>
                   <JoinGroup />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="/group/:id"
+              element={
+                <div>
+                  <TaskPage />
                 </div>
               }
             />
