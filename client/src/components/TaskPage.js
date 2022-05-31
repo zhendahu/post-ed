@@ -19,6 +19,7 @@ const fakeTaskData = [{
   author: "Melissa Chen",
   description: "klsdfjlskfjlksjflsdg.lk flskfjdlkfgjldkfg"
 }]
+
 let TaskGroups = [];
 for (let i = 0; i < 5; ++i) {
   TaskGroups.push(
@@ -32,7 +33,7 @@ export default class TaskPage extends Component {
     return (
       <div className="task-background">
         <PostedNavbar />
-        <h1 className="task-title">Tasks:</h1>
+        <h1 className="group-title">{this.props.group}</h1>
         <Row xs={1} md={3} className="task-collection">
     
           {TaskGroups.map((TaskGroup) => {
@@ -41,6 +42,7 @@ export default class TaskPage extends Component {
             <Col>{TaskGroup} <br></br></Col>
             )
           })}
+       
         </Row>
       </div>
     );
