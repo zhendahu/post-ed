@@ -15,6 +15,6 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Team
-        fields = ['team_name', 'team_password', 'team_groups', 'team_users']
+        fields = ['id', 'team_name', 'team_password', 'team_groups', 'team_users']
 
 
