@@ -38,6 +38,10 @@ class UserViewSet(viewsets.ModelViewSet):
             data = json.loads(request.body)
             print(data)
             user_obj = User.objects.get(id=data['id'])
+            filter_name = User.objects.filter(username=data['username'])
+            if len(filter_name) != 0:
+                if filter_name[0].id != user_obj.id:
+                    return Response(status=400)
             print(user_obj)
             user_obj.username = data['username']
             user_obj.email = data['email']
