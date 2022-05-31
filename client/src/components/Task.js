@@ -3,8 +3,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { Card, Button } from 'react-bootstrap';
 import EditTaskModal from "./EditTaskModal";
 import './Task.css'
-import { StyledEngineProvider } from "@mui/material";
-import TrashBin from "../static/images/trashbin.png";
+import { ItemTypes } from "./DragAndDrop";
+import { useDrag } from "react-dnd";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -19,23 +19,34 @@ import TrashBin from "../static/images/trashbin.png";
 //MADE AND NEEDS TO BE EDITED
 
 const Task=(props)=>{
+
+  const [{isDragging}, drag] = useDrag(() => ({
+    type: ItemTypes.TASK,
+    collect: monitor => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+
+  }))
+
     const [isChecked, setIsChecked] = useState(false);
     const style = {
-        height: 25,
-        width: 100,
-        fontSize: 12,
-        padding: 0,
-        position: "absolute",
-        left:    40,
-        bottom:10,
-     
+        height: 20,
+        width: 75,
+        fontSize: 10,
+        padding: 0
+
       };
     return(
-        <Card style={{border: "1px solid grey", borderRadius:"50px 50px"}}>
-                <Card.Title style={{"text-align": "center", "font-size": "16px"}}>{props.data.title}</Card.Title>
-                <br></br>
-                <br></br>
-
+        <div 
+          ref={drag}
+          style={{
+            opacity: isDragging ? 0.5 : 1,
+            fontSize: 25,
+            fontWeight: 'bold',
+            cursor: 'move',
+          }}
+        >
+                <p className='task-title'>{props.data.title}</p>
                 <Button
                 variant="outline-primary"
                 onClick={() => this.openEditTaskModal()}
@@ -43,17 +54,7 @@ const Task=(props)=>{
                 className = 'task-button'
                 >
                     Open Task </Button>
-                    <Button
-                  variant="outline-danger"
-                  size="sm"
-                  style={{ position: "absolute",
-                    right:    25,
-                    bottom:   10}}
-                  onClick={() => this.removeTask()}
-                >
-                  <img src={TrashBin} alt="add item" width="10" />
-                </Button>
-     </Card>
+     </div>
         );
 }
 
