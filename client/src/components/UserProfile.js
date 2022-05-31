@@ -41,13 +41,13 @@ function UserProfile(props) {
             password: 'no need'
         }).then(window.location.reload(false));
     }
-    
+
     return (
         <div className="profile-background">
             <PostedNavbar />
             <h2>{userInfo.username}'s Profile</h2>
 
-            <Image src={userInfo.image_url}></Image>
+            <Image src={userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
 
             <div>
                 <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
@@ -55,10 +55,10 @@ function UserProfile(props) {
                 <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "2px" }}>Join Group</Button>
             </div>
             <br></br>
-            <ListGroup className="container" style={{maxWidth: '45%'}}>
+            <ListGroup className="container" style={{ maxWidth: '45%' }}>
                 <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
                 <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
-                <ListGroup.Item><h3>Groups</h3> 
+                <ListGroup.Item><h3>Groups</h3>
                     <ListGroup>
                         {teamsInfo.map((value, index) => {
                             return (
