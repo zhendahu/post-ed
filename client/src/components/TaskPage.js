@@ -7,15 +7,17 @@ import PostedNavbar from "./PostedNavbar";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from "axios";
+import { useParams } from "react-router-dom"
 import { lighten } from "@mui/material";
 
 function TaskPage(props) {
   const [isLoading, setLoading] = useState(true);
   let [taskGroupObjects, setTaskGroupObjects] = useState([]);
+  const { id } = useParams();
 
   const getData = async () => {
     const taskGroupArray = [];
-    const teamGroupsData = (await axios('/api/teams/1')).data.team_groups;
+    const teamGroupsData = (await axios(`/api/teams/${id}`)).data.team_groups;
     let index = 0;
     for (const taskGroup of teamGroupsData) {
       const taskArray = []
