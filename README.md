@@ -10,3 +10,9 @@
 * `rm -r user/migrations posted_app/migrations`
 * `python manage.py makemigrations`
 * `python manage.py migrate`
+* `python manage.py runserver`
+
+## To run client
+
+* `cd client`
+* `npm start`
