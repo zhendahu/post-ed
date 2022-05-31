@@ -10,7 +10,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'url', 'username','email','password','is_staff','image_url', 'team_set']
+        fields = ['id', 'url', 'username','email','password','is_staff','image_url', 'team_set','last_name']
         read_only_fields = ('is_staff',)
         write_only_fields = ('password',)
         extra_kwargs={
