@@ -19,40 +19,49 @@ import TrashBin from "../static/images/trashbin.png";
 //MADE AND NEEDS TO BE EDITED
 
 const Task=(props)=>{
-    const [isChecked, setIsChecked] = useState(false);
+
+
+    const [show, setShow] = useState(false);
+
     const style = {
         height: 25,
         width: 100,
         fontSize: 12,
         padding: 0,
-        position: "absolute",
-        left:    40,
-        bottom:10,
-     
       };
-    return(
-        <Card style={{border: "1px solid grey", borderRadius:"50px 50px"}}>
-                <Card.Title style={{"text-align": "center", "font-size": "16px"}}>{props.data.title}</Card.Title>
-                <br></br>
-                <br></br>
 
+      function onHide(){
+          setShow(false)
+      }
+
+      function openEditTaskModal(){
+        setShow(true)
+      }
+
+    return(
+        <Card className="shadow p-3 mb-5 bg-white rounded"
+        style={{border: "1px solid grey", borderRadius:"50px 50px"}} >
+                <EditTaskModal show ={show} onHide = {() => onHide()} title={props.data.title}></EditTaskModal>
+                <Card.Title style={{"text-align": "center", "font-size": "20px"}}>{props.data.title}</Card.Title>
+                <br></br>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <Button
                 variant="outline-primary"
-                onClick={() => this.openEditTaskModal()}
+                onClick={() => openEditTaskModal()}
                 style = {style}
                 className = 'task-button'
                 >
-                    Open Task </Button>
+                    Open Task </Button> 
+
                     <Button
                   variant="outline-danger"
                   size="sm"
-                  style={{ position: "absolute",
-                    right:    25,
-                    bottom:   10}}
+                
                   onClick={() => this.removeTask()}
                 >
                   <img src={TrashBin} alt="add item" width="10" />
                 </Button>
+                </div>
      </Card>
         );
 }

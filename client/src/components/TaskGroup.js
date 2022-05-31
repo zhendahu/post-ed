@@ -11,8 +11,9 @@ export default class TaskGroup extends Component {
     };
   }
   addTask() {
+  
     this.setState({
-      show: true,
+      show: true
     });
   }
   //INCOMPLETE
@@ -35,19 +36,16 @@ export default class TaskGroup extends Component {
           <Card.Subtitle className="mb-2 text-muted">
             {this.props.subtitle}
           </Card.Subtitle>
-          <TaskModal show = {this.state.show} onHide = {() => this.onHide()}></TaskModal>
+          <TaskModal show ={this.state.show} onHide = {() => this.onHide()}></TaskModal>
           <ListGroup className="list-group-flush" bg="dark">
             {this.props.tasks.map((task) => (
               <div>
               <ListGroup.Item style={{border: "1px solid white", borderRadius:"5%"}}>
                 <Task data = {task}> </Task>
-                &nbsp;&nbsp;&nbsp;&nbsp;
               </ListGroup.Item>
-              <br></br>
               </div>
             ))}
           </ListGroup>
-          <br></br>
           <ToggleButton onClick={() => this.addTask()} variant="success">
             {" "}
             + New Task{" "}

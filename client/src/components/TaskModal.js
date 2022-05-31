@@ -11,6 +11,7 @@ class TaskModal extends React.Component {
   }
 
   handleClose() {
+    
     this.setState({
       show: false,
     });
@@ -20,36 +21,52 @@ class TaskModal extends React.Component {
       show: true,
     });
   }
+ handleFormSubmit(event){
+  console.log('hi')
+  
+  event.preventDefault();
+  const title = event.target[0].value;
+  const description = event.target[1].value;
+  const assignment = event.target[2].value;
+  console.log(title + ", " + description + ', ' + assignment);
+  this.setState({
+    show:false
+  })
+}
+
 
   render() {
     return (
       <Modal show={this.props.show} onHide={() => this.props.onHide()}>
         <Modal.Header closeButton>
-          <Modal.Title>Title</Modal.Title>
+          <Modal.Title>Create Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={this.handleFromSubmit}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text" placeholder="Title" autoFocus />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>description</Form.Label>
-              <Form.Control type="text" placeholder="description" autoFocus />
+              <Form.Label>Description</Form.Label>
+              <Form.Control type="text" placeholder="Description" autoFocus />
+            </Form.Group >
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Assignee</Form.Label>
+
+            <Form.Select aria-label="Default select example">
+  <option>Assign this task to...</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+            <option value="3">Three</option>
+            </Form.Select>
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>assignments</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+            <Button variant="primary" type="submit">
+            Submit
+          </Button>
           </Form>
+
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => this.props.onHide()}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => this.props.onHide()}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     );
   }
