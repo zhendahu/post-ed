@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import jwt from "../utils/jwt.js";
 import PostedNavbar from "./PostedNavbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import './CreateGroup.css'
 
 const CreateGroup = () => {
     const [userInfo, setUserInfo] = useState(0);
@@ -72,6 +73,13 @@ const CreateGroup = () => {
                     Submit
                 </Button>
             </Form>
+            <br></br>
+            <br></br>
+
+            <div>
+                <p className="sub-title">Looking for an already-existing group?</p>
+                <Link to="/joingroup"> Join a group instead</Link>
+            </div>
         </>
     );
 }

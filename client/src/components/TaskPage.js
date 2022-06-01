@@ -52,9 +52,7 @@ function TaskPage(props) {
         <Button className="btn-sm" onClick={() => setShow(true)}>Create Task Group</Button>
         <TaskGroupModal id={id} show={show} onHide={() => setShow(false)}></TaskGroupModal>
         {!isLoading && <Row xs={1} md={3} style={{ maxWidth: '100%', padding: '1em' }}>
-
           {taskGroupObjects}
-
         </Row>}
 
       </div>
