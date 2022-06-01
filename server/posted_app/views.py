@@ -12,6 +12,22 @@ class TaskGroupViewSet(viewsets.ModelViewSet):
     """
     queryset = TaskGroup.objects.all()
     serializer_class = TaskGroupSerializer
+    def patch(self, request):
+        try:
+            import json
+            data = json.loads(request.body)
+            print(data)
+            should_delete = data['should_delete']
+            if not should_delete:
+                team_obj = Team.objects.get(id=data['id'])
+                TaskGroup.objects.create(taskgroup_name=data['taskgroup_name'], team=team_obj)
+            else:
+                group_obj = TaskGroup.objects.get(id=data['group_id'])
+                group_obj.delete()
+        except Exception as e:
+            print(e)
+            return Response(status=400)
+        return JsonResponse({'status':200})
 
 class TaskViewSet(viewsets.ModelViewSet):
     """

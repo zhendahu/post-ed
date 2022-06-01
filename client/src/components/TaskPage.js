@@ -9,9 +9,11 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from "axios";
 import { useParams } from "react-router-dom"
 import { lighten, TableRow } from "@mui/material";
+import TaskGroupModal from "./TaskGroupModal";
 
 function TaskPage(props) {
   const [isLoading, setLoading] = useState(true);
+  const [show, setShow] = useState(false)
   let [taskGroupObjects, setTaskGroupObjects] = useState([]);
   let [teamName, setTeamName] = useState('');
   const { id } = useParams();
@@ -25,12 +27,12 @@ function TaskPage(props) {
       const taskArray = []
       const tasksGroupsData = (await axios(taskGroup)).data;
       for (const tasks of tasksGroupsData.group_tasks) {
-        const task = (await axios(tasks)).data.task_name;
+        const task = (await axios(tasks)).data;
         taskArray.push({
-          title: task
+          title: task.task_name
         });
       }
-      taskGroupArray.push(<Col>{<TaskGroup key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} />} <br></br></Col>)
+      taskGroupArray.push(<Col>{<TaskGroup key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} id={tasksGroupsData.id}/>} <br></br></Col>)
       index++;
     }
     setTaskGroupObjects(taskGroupArray);
@@ -47,6 +49,8 @@ function TaskPage(props) {
       <div className="task-background">
         <PostedNavbar />
         <h1 className="group-title">{teamName}</h1>
+        <Button className="btn-sm" onClick={() => setShow(true)}>Create Task Group</Button>
+        <TaskGroupModal id={id} show={show} onHide={() => setShow(false)}></TaskGroupModal>
         {!isLoading && <Row xs={1} md={3} style={{ maxWidth: '100%', padding: '1em' }}>
 
           {taskGroupObjects}

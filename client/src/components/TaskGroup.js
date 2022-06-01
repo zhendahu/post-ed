@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import { ListGroup, Button, Card, ToggleButton } from "react-bootstrap";
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Card, ListGroup, ToggleButton } from "react-bootstrap";
 import TrashBin from "../static/images/trashbin.png";
 import Task from "./Task.js";
 import TaskModal from "./TaskModal.js";
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import jwt from "../utils/jwt";
 
 
 function TaskGroup(props) {
@@ -16,8 +14,15 @@ function TaskGroup(props) {
     setShow(true)
   }
   //INCOMPLETE
-  const removeTask = () => {
+  const removeTaskGroup = () => {
     console.log("Goodbye World!");
+    axios.patch('/api/taskgroups/', {
+      group_id: props.id,
+      should_delete: true
+  }).then(res => {
+      console.log(res);
+      window.location.reload();
+  });
   }
 
   const onHide = () => {
@@ -71,7 +76,7 @@ function TaskGroup(props) {
         <Button
           variant="outline-danger"
           size="sm"
-          onClick={() => removeTask()}
+          onClick={() => removeTaskGroup()}
           style={{float: 'right'}}
         >
           <img src={TrashBin} alt="add item" width="10" />
