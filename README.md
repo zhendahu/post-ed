@@ -31,10 +31,12 @@
 ### Managing Groups
 Creating a group
 * Go to Groups (on the nav bar) > Create Group
-* Enter a group ID and password to create a group
+* Enter a group ID and password to create a group  
+
 Joining a group
 * Go to Groups (on the nav bar) > Join Group
-* Enter a group ID and password to join a group
+* Enter a group ID and password to join a group  
+
 Leaving a group
 * ???
 
@@ -42,3 +44,8 @@ Leaving a group
 * create a task
 * edit a task
 * remove a task
+
+### Editing Profile
+* change name
+* change pfp
+* change email
