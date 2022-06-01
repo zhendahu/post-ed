@@ -1,0 +1,6 @@
+body{
+    background: linear-gradient(to right, aqua, fuchsia);
+    background-size: cover;
+    height: 100%;
+  overflow: hidden;
+}

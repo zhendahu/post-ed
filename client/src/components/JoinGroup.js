@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import jwt from "../utils/jwt.js";
 import PostedNavbar from "./PostedNavbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import './JoinGroup.css'
 
 const JoinGroup = () => {
     const [userInfo, setUserInfo] = useState(0);
@@ -39,7 +40,7 @@ const JoinGroup = () => {
     };
 
     return (
-        <>
+        <div>
             <PostedNavbar />
             <h2 style={{ marginBottom: "1em" }}>Join an existing group</h2>
             <Form className="container-md" onSubmit={handleFormSubmit}>
@@ -57,7 +58,14 @@ const JoinGroup = () => {
                     Submit
                 </Button>
             </Form>
-        </>
+            <br></br>
+            <br></br>
+
+            <div>
+                <p className='sub-title'>No groups to join?</p>
+                <Link to="/creategroup"> Create a group instead</Link>
+            </div>
+        </div>
     );
 }
 
