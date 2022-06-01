@@ -45,24 +45,28 @@ function UserProfile(props) {
     return (
         <div className="profile-background">
             <PostedNavbar />
+            <div id="name-and-pic">
             <h2>{userInfo.username}'s Profile</h2>
-
+            <div style={{borderRadius: '25px'}}>
             <Image src={userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
-
+            </div>
             <div>
                 <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
-                <Button onClick={() => navigate(`/creategroup`)}>Create Group</Button>
-                <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "2px" }}>Join Group</Button>
+                
+            </div>
             </div>
             <br></br>
-            <ListGroup className="container" style={{ maxWidth: '45%' }}>
+            <ListGroup className="groups" style={{ maxWidth: '45%' }}>
                 <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
                 <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
-                <ListGroup.Item><h3>Groups</h3>
+                <ListGroup.Item><h4>Groups 
+                    <Button onClick={() => navigate(`/creategroup`)} style={{ margin: "10px"}}>Create Group    
+                </Button>
+                <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "4px" }}>Join Group</Button> </h4>
                     <ListGroup>
                         {teamsInfo.map((value, index) => {
                             return (
-                                <ListGroup.Item key={index}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
+                                <ListGroup.Item key={index} style="fontSize:2em;" style={{fontFamily: "Concert One"}}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
                             );
                         })}
                     </ListGroup>
