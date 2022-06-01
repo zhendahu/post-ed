@@ -48,7 +48,6 @@ function EditUserProfile() {
         
         const name = event.target[4].value
         const email = event.target[5].value
-
         let avatarSource = userInfo.image_url;
         if (checked >= 0) {
             avatarSource = avatars[checked];
@@ -57,9 +56,9 @@ function EditUserProfile() {
         // TODO: add validation
         axios.patch('/api/users/', {
             id: userInfo.id,
-            username: name,
+            last_name: name,
             email: email,
-            avatar: avatarSource
+            iamge_url: avatarSource
         }).catch((error) => {
             
             return 0;
@@ -75,7 +74,7 @@ function EditUserProfile() {
     return (
         <div className="profile-background">
             <PostedNavbar />
-            <h2>Editing {userInfo.username}'s Profile</h2>
+            <h2>Editing {userInfo.last_name}'s Profile</h2>
 
             <br></br>
             <Form className="container-md" onSubmit={handleFormSubmit}>
@@ -84,13 +83,13 @@ function EditUserProfile() {
                     <div>
                         <Form.Check
                             inline
-                            label={<Image src={avatars[0]} />}
+                            label={<Image className="image" src={avatars[0]} />}
                             name="group1"
                             type='radio'
                         />
                         <Form.Check
                             inline
-                            label={<Image src={avatars[1]} />}
+                            label={<Image className="image" src={avatars[1]} />}
                             name="group1"
                             type='radio'
                         />
@@ -99,13 +98,13 @@ function EditUserProfile() {
                     <div>
                         <Form.Check
                             inline
-                            label={<Image src={avatars[2]} />}
+                            label={<Image className="image" src={avatars[2]} />}
                             name="group1"
                             type='radio'
                         />
                         <Form.Check
                             inline
-                            label={<Image src={avatars[3]} />}
+                            label={<Image className="image" src={avatars[3]} />}
                             name="group1"
                             type='radio'
                         />
