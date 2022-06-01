@@ -8,7 +8,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import jwt from "../utils/jwt";
 
 
-function TaskGroup (props) {
+function TaskGroup(props) {
 
   const [show, setShow] = useState(false)
 
@@ -19,7 +19,7 @@ function TaskGroup (props) {
   const removeTask = () => {
     console.log("Goodbye World!");
   }
-  
+
   const onHide = () => {
     setShow(false)
   }
@@ -45,40 +45,41 @@ function TaskGroup (props) {
   console.log("y: ")
   console.log(y)
 
-    return (
+  return (
 
-      // <DndProvider backend={HTML5Backend}>
-        <Card className="text-center" ref={taskRef}>
-          <Card.Body>
-            <Card.Title>{props.title}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              {props.subtitle}
-            </Card.Subtitle>
-            <TaskModal show = {show} onHide = {() => onHide()}></TaskModal>
-            <ListGroup className="list-group-flush" bg="dark">
-              {props.tasks.map((task) => (
-                <ListGroup.Item>
-                  <Task data = {task}> </Task>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={() => removeTask()}
-                  >
-                    <img src={TrashBin} alt="add item" width="10" />
-                  </Button>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-            <br></br>
-            <ToggleButton onClick={() => addTask()} variant="success">
-              {" "}
-              + New Task{" "}
-            </ToggleButton>
-          </Card.Body>
-        </Card>
-      // </DndProvider>
-    );
+    // <DndProvider backend={HTML5Backend}>
+    <Card className="text-center" ref={taskRef}>
+      <Card.Body>
+        <Card.Title>{props.title}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {props.subtitle}
+        </Card.Subtitle>
+        <TaskModal show={show} onHide={() => onHide()}></TaskModal>
+        <ListGroup className="list-group-flush" bg="dark">
+          {props.tasks.map((task) => (
+            <ListGroup.Item>
+              <Task data={task}> </Task>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <br></br>
+        <ToggleButton onClick={() => addTask()} variant="success">
+          {" "}
+          + New Task{" "}
+        </ToggleButton>
+        <Button
+          variant="outline-danger"
+          size="sm"
+          onClick={() => removeTask()}
+          style={{float: 'right'}}
+        >
+          <img src={TrashBin} alt="add item" width="10" />
+        </Button>
+      </Card.Body>
+    </Card>
+    // </DndProvider>
+  );
 }
 
 export default TaskGroup
