@@ -34,7 +34,7 @@ function TaskGroup(props) {
   const getData = async () => {
     const users = [];
     let index = 0;
-    for (const url of props.users) {
+    for (const url in props.users) {
       const reqData = (await axios.get(url)).data;
       users.push(<option key={index} value={reqData.username}>{reqData.username}</option>);
       index++;
