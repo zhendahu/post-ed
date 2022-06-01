@@ -16,13 +16,13 @@ const CreateTask = () => {
 
     setIsPending(true);
 
-    console.log(task); //need to replace this with fetch
+    
     //fetch ('need to have the link here',{
     //method: 'POST',
     //headers: {"Content-Type": "???"}
     //body: object.stringify(task)
     //}).then(() => {
-    //console.log('new task added');
+    //
     //setIsPending(false);
     //history.push('PLACE WHERE YOU SEND PEOPLE AFTER SUBMITTING TASK');
     //})

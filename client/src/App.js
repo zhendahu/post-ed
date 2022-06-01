@@ -30,7 +30,7 @@ axios.defaults.baseURL = "//127.0.0.1:8000";
 const SetupInterceptors = (navigate) => {
   axios.interceptors.request.use(
     function (config) {
-      console.log("request", config)
+      
       let jwtString = jwt.getToken();
       if (jwtString) {
         config.headers.Authorization = "Bearer " + jwtString
@@ -44,11 +44,11 @@ const SetupInterceptors = (navigate) => {
 
   axios.interceptors.response.use(
     function (response) {
-      console.log("response");
+      
       return response;
     },
     function (error) {
-      console.log("error", error);
+      
       if (error.response.status == 401) {
         navigate("/login", { replace: true })
       }
@@ -89,7 +89,8 @@ class App extends React.Component {
         <BrowserRouter>
           {<NavigateFunctionComponent />}
           <Routes>
-            <Route exact path="/" element={<TaskPage group="35L" />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/tasks" element={<TaskPage />} />
             <Route
               exact
               path="/login"

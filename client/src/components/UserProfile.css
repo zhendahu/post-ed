@@ -1,16 +1,15 @@
 .profile-background {
     min-height: 100vh;
     margin-bottom: 1em;
-    background-color: white;
+    background: linear-gradient(to right, aqua, fuchsia);
 }
 
-h1 {
-    font-size: 8.2em;
-    justify-content: space-between;
+h2{
     font-family: "Concert One", cursive;
-    mix-blend-mode: difference;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
 }
+
 
 #listgroup {
     font-family: "Concert One", cursive;
@@ -20,8 +19,16 @@ h1 {
     font-weight: bold;
 }
 
-#profpic {
-    position: absolute;
-    left: 30px;
-    padding-top: 75px;
+.groups{
+    display: block;
+    margin-left: 800px;
+    margin-right: auto;
+    text-align: center;
+    align-self: center;
+}
+
+#name-and-pic{
+    float: left;
+    margin-left: 160px;
+    margin-top: 40px;
 }

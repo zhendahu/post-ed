@@ -5,12 +5,12 @@ from rest_framework import serializers
 class TaskGroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TaskGroup
-        fields = ['id', 'taskgroup_name', 'team', 'group_tasks']
+        fields = ['id', 'url', 'taskgroup_name', 'team', 'group_tasks']
 
 class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
-        fields = ['id', 'task_name', 'task_description', 'group']
+        fields = ['id', 'url', 'task_name', 'task_description', 'task_assignee', 'group']
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

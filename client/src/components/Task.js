@@ -4,8 +4,10 @@ import { Card, Button } from 'react-bootstrap';
 import EditTaskModal from "./EditTaskModal";
 import './Task.css'
 import { ItemTypes } from "./DragAndDrop";
+import { useParams } from "react-router-dom";
 import { useDrag } from "react-dnd";
 import TrashBin from "../static/images/trashbin.png";
+import axios from "axios";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -56,6 +58,13 @@ const Task = (props) => {
     setShow(true)
   }
 
+  const removeTask = () => {
+    axios.delete(props.data.url)
+    window.location.reload()
+  };
+
+  const { id } = useParams();
+
   return (
     <div
       ref={drag}
@@ -68,7 +77,7 @@ const Task = (props) => {
     >
       <Card className="shadow p-3 mb-1 mt-1 bg-white rounded"
         style={{ border: "1px solid grey", borderRadius: "50px 50px" }} >
-        <EditTaskModal show={show} onHide={() => onHide()} title={props.data.title}></EditTaskModal>
+        <EditTaskModal id={id} show={show} onHide={() => onHide()} title={props.data.title} desc={props.data.desc} assignee={props.data.assignee}></EditTaskModal>
         <Card.Title style={{ "text-align": "center", "font-size": "20px" }}>{props.data.title}</Card.Title>
         <br></br>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -85,7 +94,7 @@ const Task = (props) => {
             variant="outline-danger"
             size="sm"
 
-            onClick={() => this.removeTask()}
+            onClick={() => removeTask()}
           >
             <img src={TrashBin} alt="add item" width="10" />
           </Button>

@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import jwt from "../utils/jwt.js";
 import PostedNavbar from "./PostedNavbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import './CreateGroup.css'
 
 const CreateGroup = () => {
     const [userInfo, setUserInfo] = useState(0);
     const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
     }, [userInfo.url, errorInfo]);
@@ -22,9 +23,9 @@ const CreateGroup = () => {
         const name = event.target[0].value;
         const password = event.target[1].value;
         const confirm = event.target[2].value;
-        console.log(password + ", " + confirm);
+        
         if (password !== confirm) {
-            console.log("passwords do not match");
+            
             setErrorInfo('Passwords do not match');
             return;
         }
@@ -35,7 +36,7 @@ const CreateGroup = () => {
             team_groups: [],
             team_users: [userInfo.url]
         }).catch((error) => {
-            console.log(error);
+            
             return 0;
         }).then(code => {
             if (code !== 0) {
@@ -72,6 +73,13 @@ const CreateGroup = () => {
                     Submit
                 </Button>
             </Form>
+            <br></br>
+            <br></br>
+
+            <div>
+                <p className="sub-title">Looking for an already-existing group?</p>
+                <Link to="/joingroup"> Join a group instead</Link>
+            </div>
         </>
     );
 }

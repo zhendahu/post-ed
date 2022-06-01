@@ -13,17 +13,17 @@ function EditUserProfile() {
     const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
         try {
             if (userInfo.team_set && userInfo.team_set.length === 0) {
                 userInfo.team_set = 'None';
             } else {
-                console.log(userInfo.team_set);
+                
             }
         } catch (e) {
-            console.log(e);
+            
         }
     }, [userInfo.username, userInfo.email]);
 
@@ -37,7 +37,7 @@ function EditUserProfile() {
 
     const handleFormSubmit = (event) => {
         event.preventDefault()
-        console.log(event.target)
+        
         let checked = -1;
         for (let i = 0; i < 4; i++) {
             if (event.target[i].checked === true) {
@@ -45,7 +45,7 @@ function EditUserProfile() {
                 break;
             }
         }
-        console.log(checked);
+        
         const name = event.target[4].value
         const email = event.target[5].value
 
@@ -53,7 +53,7 @@ function EditUserProfile() {
         if (checked >= 0) {
             avatarSource = avatars[checked];
         }
-        console.log(name + ", " + email)
+        
         // TODO: add validation
         axios.patch('/api/users/', {
             id: userInfo.id,
@@ -61,7 +61,7 @@ function EditUserProfile() {
             email: email,
             avatar: avatarSource
         }).catch((error) => {
-            console.log(error);
+            
             return 0;
         }).then(code => {
             if (code !== 0) {

@@ -12,7 +12,7 @@ function UserProfile(props) {
     const [teamsInfo, setTeamsInfo] = useState([]);
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
         try {
@@ -25,15 +25,15 @@ function UserProfile(props) {
                 setTeamsInfo(teamsInfo)
             }
         } catch (e) {
-            console.log(e);
+            
         }
     }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
     const navigate = useNavigate();
-    console.log(teamsInfo)
+    
 
     const handleLeaveGroup = (groupName) => {
-        console.log(groupName)
+        
         axios.patch('/api/teams/', {
             should_leave: true,
             id: userInfo.id,
@@ -45,29 +45,36 @@ function UserProfile(props) {
     return (
         <div className="profile-background">
             <PostedNavbar />
+            <div id="name-and-pic">
             <h2>{userInfo.username}'s Profile</h2>
-
+            <div style={{borderRadius: '25px'}}>
             <Image src={userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
-
+            </div>
             <div>
                 <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
-                <Button onClick={() => navigate(`/creategroup`)}>Create Group</Button>
-                <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "2px" }}>Join Group</Button>
+                
+            </div>
             </div>
             <br></br>
-            <ListGroup className="container" style={{ maxWidth: '45%' }}>
-                <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
-                <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
-                <ListGroup.Item><h3>Groups</h3>
-                    <ListGroup>
-                        {teamsInfo.map((value, index) => {
+            <div>
+                <h2 className='name'>Name: {userInfo.last_name}</h2>
+                <br></br>
+                <h2>Email: {userInfo.email}</h2>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h2 className="group-title">Groups:</h2>
+                <br></br>
+                <ListGroup className="groups" style={{ maxWidth: '25%' }}>
+                {teamsInfo.map((value, index) => {
                             return (
-                                <ListGroup.Item key={index}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
+                                <ListGroup.Item variant="info" key={index} style={{fontFamily: "Concert One", fontSize:"2rem"}}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{"display": "flex",
+                                    "align-items": "center"}}>Leave</Button></ListGroup.Item>
                             );
                         })}
-                    </ListGroup>
-                </ListGroup.Item>
-            </ListGroup>
+                </ListGroup>
+
+            </div>
         </div>
     );
 
