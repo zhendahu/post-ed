@@ -40,7 +40,7 @@ router.register(r'teams', posted_views.TeamViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('api-auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api-auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('user/', include('user.urls')),

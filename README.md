@@ -7,11 +7,9 @@
 * ``python manage.py createsuperuser``
 
 ### Running a server:
-* `rm -f db.sqlite3`
-* `rm -r user/migrations posted_app/migrations`
-* `pip install django djangorestframework-simplejwt djangorestframework`
-* `python manage.py makemigrations`
-* `python manage.py migrate`
+* `cd server`
+* `./setup.sh`
+* `source venv/bin/activate`
 * `python manage.py runserver`
 
 ### Running a client:

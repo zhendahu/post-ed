@@ -63,7 +63,7 @@ function TaskGroup(props) {
   }
 
   return (
-    <Card className="text-center">
+    <Card style={{height:"80vh",overflow:"scroll"}} className="text-center">
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
