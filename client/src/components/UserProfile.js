@@ -48,7 +48,7 @@ function UserProfile(props) {
             <div id="name-and-pic">
             <h2>{userInfo.username}'s Profile</h2>
             <div style={{borderRadius: '25px'}}>
-            <Image src={userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
+            <Image src={axios.defaults.baseURL+'/static/'+userInfo.image_url} style={{ width: '300px', height: '300px', objectFit: 'cover', marginBottom: '0.75em' }}></Image>
             </div>
             <div>
                 <Button style={{ margin: "2px" }} onClick={() => navigate(`/profile/edit`)} >Edit profile</Button>
