@@ -5,6 +5,7 @@ import EditTaskModal from "./EditTaskModal";
 import './Task.css'
 import { ItemTypes } from "./DragAndDrop";
 import { useDrag } from "react-dnd";
+import TrashBin from "../static/images/trashbin.png";
 
 //task component containing information acquired from endpoint
 //includes checkbox functionality for user to mark completed tasks
@@ -18,18 +19,19 @@ import { useDrag } from "react-dnd";
 //STILL NEED TO ADD FUNCTIONALITY FOR OPENING A TASK THAT IS ALREADY
 //MADE AND NEEDS TO BE EDITED
 
-const Task=(props)=>{
+const Task = (props) => {
 
 
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const style = {
-        height: 25,
-        width: 100,
-        fontSize: 12,
-        padding: 0,
+  // const style = {
+  //   height: 25,
+  //   width: 100,
+  //   fontSize: 12,
+  //   padding: 0,
+  // }
 
-  const [{isDragging}, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.TASK,
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
@@ -37,61 +39,61 @@ const Task=(props)=>{
 
   }))
 
-    const [isChecked, setIsChecked] = useState(false);
-    const style = {
-        height: 20,
-        width: 75,
-        fontSize: 10,
-        padding: 0
+  const [isChecked, setIsChecked] = useState(false);
+  const style = {
+    height: 20,
+    width: 75,
+    fontSize: 10,
+    padding: 0
 
-      };
+  };
 
-      function onHide(){
-          setShow(false)
-      }
+  function onHide() {
+    setShow(false)
+  }
 
-      function openEditTaskModal(){
-        setShow(true)
-      }
+  function openEditTaskModal() {
+    setShow(true)
+  }
 
-    return(
-         <div 
-          ref={drag}
-          style={{
-            opacity: isDragging ? 0.5 : 1,
-            fontSize: 25,
-            fontWeight: 'bold',
-            cursor: 'move',
-          }}
-        >
-        <Card className="shadow p-3 mb-5 bg-white rounded"
-        style={{border: "1px solid grey", borderRadius:"50px 50px"}} >
-                <EditTaskModal show ={show} onHide = {() => onHide()} title={props.data.title}></EditTaskModal>
-                <Card.Title style={{"text-align": "center", "font-size": "20px"}}>{props.data.title}</Card.Title>
-                <br></br>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-     
-                <Button
-                variant="outline-primary"
-                onClick={() => openEditTaskModal()}
-                style = {style}
-                className = 'task-button'
-                >
-                    Open Task </Button> 
+  return (
+    <div
+      ref={drag}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+        fontSize: 25,
+        fontWeight: 'bold',
+        cursor: 'move',
+      }}
+    >
+      <Card className="shadow p-3 mb-1 mt-1 bg-white rounded"
+        style={{ border: "1px solid grey", borderRadius: "50px 50px" }} >
+        <EditTaskModal show={show} onHide={() => onHide()} title={props.data.title}></EditTaskModal>
+        <Card.Title style={{ "text-align": "center", "font-size": "20px" }}>{props.data.title}</Card.Title>
+        <br></br>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
 
-                    <Button
-                  variant="outline-danger"
-                  size="sm"
-                
-                  onClick={() => this.removeTask()}
-                >
-                  <img src={TrashBin} alt="add item" width="10" />
-                </Button>
-                </div>
-     </Card>
+          <Button
+            variant="outline-primary"
+            onClick={() => openEditTaskModal()}
+            style={style}
+            className='task-button'
+          >
+            Open Task </Button>
 
-     </div>
-        );
+          <Button
+            variant="outline-danger"
+            size="sm"
+
+            onClick={() => this.removeTask()}
+          >
+            <img src={TrashBin} alt="add item" width="10" />
+          </Button>
+        </div>
+      </Card>
+
+    </div>
+  );
 }
 
 export default Task;

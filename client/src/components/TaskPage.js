@@ -1,5 +1,5 @@
 import { React, Component, useRef, useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button, Container } from "react-bootstrap";
 import TaskGroup from "./TaskGroup";
 import "./TaskGroup.js";
 import './TaskPage.css';
@@ -8,18 +8,20 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from "axios";
 import { useParams } from "react-router-dom"
-import { lighten } from "@mui/material";
+import { lighten, TableRow } from "@mui/material";
 
 function TaskPage(props) {
   const [isLoading, setLoading] = useState(true);
   let [taskGroupObjects, setTaskGroupObjects] = useState([]);
+  let [teamName, setTeamName] = useState('');
   const { id } = useParams();
 
   const getData = async () => {
     const taskGroupArray = [];
-    const teamGroupsData = (await axios(`/api/teams/${id}`)).data.team_groups;
+    const teamGroupsData = (await axios(`/api/teams/${id}`)).data;
+    setTeamName(teamGroupsData.team_name);
     let index = 0;
-    for (const taskGroup of teamGroupsData) {
+    for (const taskGroup of teamGroupsData.team_groups) {
       const taskArray = []
       const tasksGroupsData = (await axios(taskGroup)).data;
       for (const tasks of tasksGroupsData.group_tasks) {
@@ -44,8 +46,8 @@ function TaskPage(props) {
 
       <div className="task-background">
         <PostedNavbar />
-        <h1 className="group-title">{props.group}</h1>
-        {!isLoading && <Row xs={1} md={3} className="task-collection">
+        <h1 className="group-title">{teamName}</h1>
+        {!isLoading && <Row xs={1} md={3} style={{ maxWidth: '100%', padding: '1em' }}>
 
           {taskGroupObjects}
 
