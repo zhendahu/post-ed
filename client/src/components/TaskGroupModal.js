@@ -23,13 +23,13 @@ class TaskGroupModal extends React.Component {
         });
     }
     handleFormSubmit(event) {
-        console.log('hi')
+        
 
         event.preventDefault();
         const title = event.target[0].value;
         const description = event.target[1].value;
         const assignment = event.target[2].value;
-        console.log(title + ", " + description + ', ' + assignment);
+        
         this.setState({
             show: false
         })
@@ -44,7 +44,7 @@ class TaskGroupModal extends React.Component {
                 taskgroup_name: groupName,
                 should_delete: false
             }).then(res => {
-                console.log(res);
+                
                 window.location.reload();
             });
         };

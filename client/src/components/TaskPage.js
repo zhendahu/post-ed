@@ -31,10 +31,13 @@ function TaskPage(props) {
       for (const tasks of tasksGroupsData.group_tasks) {
         const task = (await axios(tasks)).data;
         taskArray.push({
-          title: task.task_name
+          title: task.task_name,
+          desc: task.task_description,
+          assignee: task.task_assignee,
+          url: task.url
         });
       }
-      taskGroupArray.push(<Col>{<TaskGroup users={teamUsers} key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} id={tasksGroupsData.id}/>} <br></br></Col>)
+      taskGroupArray.push(<Col>{<TaskGroup users={teamUsers} key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} id={tasksGroupsData.id} url={tasksGroupsData.url} />} <br></br></Col>)
       index++;
     }
     setTaskGroupObjects(taskGroupArray);

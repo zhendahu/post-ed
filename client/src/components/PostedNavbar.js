@@ -11,7 +11,7 @@ const PostedNavbar = () => {
   const navigate = useNavigate();
   useEffect(() => {
     jwt.getUser().then(user => {
-      console.log(user);
+      
       setUserInfo(user);
     })
     try {
@@ -24,7 +24,7 @@ const PostedNavbar = () => {
         setTeamsInfo(teamsInfo)
       }
     } catch (e) {
-      console.log(e);
+      
     }
   }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
@@ -41,7 +41,6 @@ const PostedNavbar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
             <NavDropdown title="Groups" id="basic-nav-dropdown">
               {teamsInfo !== 'None' && teamsInfo.map((value, index) => {
