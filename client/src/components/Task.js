@@ -56,6 +56,10 @@ const Task = (props) => {
     setShow(true)
   }
 
+  const removeTask = () => {
+
+  };
+
   return (
     <div
       ref={drag}
@@ -85,7 +89,7 @@ const Task = (props) => {
             variant="outline-danger"
             size="sm"
 
-            onClick={() => this.removeTask()}
+            onClick={() => removeTask()}
           >
             <img src={TrashBin} alt="add item" width="10" />
           </Button>
