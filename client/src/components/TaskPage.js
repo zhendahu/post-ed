@@ -51,7 +51,7 @@ function TaskPage(props) {
   return (
     <DndProvider backend={HTML5Backend}>
 
-      <div className="task-background">
+      <div style={{height:"100vh",overflow:"scroll"}} className="task-background">
         <PostedNavbar />
         <h1 className="group-title">{teamName}</h1>
         <Button className="btn-sm" onClick={() => setShow(true)}>Create Task Group</Button>

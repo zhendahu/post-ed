@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'posted_app',
     'user',
     'rest_framework.authtoken',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

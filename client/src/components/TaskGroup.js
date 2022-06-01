@@ -34,7 +34,7 @@ function TaskGroup(props) {
   const getData = async () => {
     const users = [];
     let index = 0;
-    for (const url of props.users) {
+    for (const url in props.users) {
       const reqData = (await axios.get(url)).data;
       users.push(<option key={index} value={reqData.username}>{reqData.username}</option>);
       index++;
@@ -63,7 +63,7 @@ function TaskGroup(props) {
   }
 
   return (
-    <Card className="text-center">
+    <Card style={{height:"70vh",overflow:"scroll"}} className="text-center">
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
