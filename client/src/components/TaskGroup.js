@@ -59,7 +59,7 @@ function TaskGroup(props) {
         <Card.Subtitle className="mb-2 text-muted">
           {props.subtitle}
         </Card.Subtitle>
-        <TaskModal show={show} onHide={() => onHide()}></TaskModal>
+        <TaskModal users={props.users} id={props.id} show={show} onHide={() => onHide()}></TaskModal>
         <ListGroup className="list-group-flush" bg="dark">
           {props.tasks.map((task) => (
             <ListGroup.Item>

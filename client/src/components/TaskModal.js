@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 class TaskModal extends React.Component {
   constructor(props) {
@@ -7,11 +8,25 @@ class TaskModal extends React.Component {
     this.state = {
       show: false,
       setShow: false,
+      userData: [],
     };
+    const getData = async () => {
+      let users = [];
+      let index = 0;
+      for(const url of props.users) {
+        const userData = (await axios.get(url)).data;
+        users.push(<option key={index} value={index}>{userData.username}</option>);
+        index++;
+      }
+      this.setState({
+        userData: users
+      });
+    }
+    getData();
   }
 
   handleClose() {
-    
+
     this.setState({
       show: false,
     });
@@ -21,18 +36,18 @@ class TaskModal extends React.Component {
       show: true,
     });
   }
- handleFormSubmit(event){
-  console.log('hi')
-  
-  event.preventDefault();
-  const title = event.target[0].value;
-  const description = event.target[1].value;
-  const assignment = event.target[2].value;
-  console.log(title + ", " + description + ', ' + assignment);
-  this.setState({
-    show:false
-  })
-}
+  handleFormSubmit(event) {
+    console.log('hi')
+
+    event.preventDefault();
+    const title = event.target[0].value;
+    const description = event.target[1].value;
+    const assignment = event.target[2].value;
+    console.log(title + ", " + description + ', ' + assignment);
+    this.setState({
+      show: false
+    })
+  }
 
 
   render() {
@@ -53,22 +68,14 @@ class TaskModal extends React.Component {
               <Form.Control type="text" placeholder="Enter description" autoFocus />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Description</Form.Label>
-              <Form.Control type="text" placeholder="Description" autoFocus />
-            </Form.Group >
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Assignee</Form.Label>
-
-            <Form.Select aria-label="Default select example">
-  <option>Assign this task to...</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-            <option value="3">Three</option>
-            </Form.Select>
+              <Form.Label>Assignee</Form.Label>
+              <Form.Select aria-label="Default select example">
+                {this.state.userData}
+              </Form.Select>
             </Form.Group>
             <Button variant="primary" type="submit">
-            Submit
-          </Button>
+              Submit
+            </Button>
           </Form>
 
         </Modal.Body>

@@ -19,7 +19,7 @@ const PostedNavbar = () => {
         userInfo.team_set = 'None';
       } else {
         for (let i = 0; i < userInfo.team_set.length; i++) {
-          axios.get(userInfo.team_set[i]).then(res => teamsInfo[i] = res.data.team_name);
+          axios.get(userInfo.team_set[i]).then(res => teamsInfo[i] = { name: res.data.team_name, id: res.data.id });
         }
         setTeamsInfo(teamsInfo)
       }
@@ -29,13 +29,8 @@ const PostedNavbar = () => {
   }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
   const handleGroupClick = (value) => {
-    axios.get('/api/teams/').then(res => {
-      for (const team of res.data.results) {
-        if (team.team_name === value) {
-          navigate(`/group/${team.id}`)
-        }
-      }
-    })
+    navigate(`/group/${value.id}`)
+    window.location.reload();
   }
 
   return (
@@ -51,7 +46,7 @@ const PostedNavbar = () => {
             <NavDropdown title="Groups" id="basic-nav-dropdown">
               {teamsInfo !== 'None' && teamsInfo.map((value, index) => {
                 return (
-                  <NavDropdown.Item key={index} onClick={() => handleGroupClick(value)}>{value}</NavDropdown.Item>
+                  <NavDropdown.Item key={index} onClick={() => handleGroupClick(value)}>{value.name}</NavDropdown.Item>
                 );
               })}
               {teamsInfo !== 'None' && <NavDropdown.Divider></NavDropdown.Divider>}
