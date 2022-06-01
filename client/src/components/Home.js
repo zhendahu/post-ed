@@ -25,17 +25,25 @@ function Home() {
     <div className="home-background">
       {first_space}
       <h1>
-        <b>Post-Ed</b>
+        <b className='title'>Post-Ed</b>
       </h1>
       {second_space}
       <Link to="/login">
-        <Button variant="light" size="xxl">
+        <Button variant="light" size="xxl" style={{fontSize: "2.3em",
+  borderRadius: "30px",
+  color: "black",
+  "font-family": "Concert One ",
+  "font-weight": "bold"}}>
           &nbsp;Login&nbsp;
         </Button>
       </Link>
       {third_space}
       <Link to="/register">
-        <Button variant="light" size="xxl">
+        <Button variant="light" className='home-button' size="xxl" style={{fontSize: "2.3em",
+  borderRadius: "30px",
+  color: "black",
+  "font-family": "Concert One ",
+  "font-weight": "bold"}}>
           &nbsp;Sign Up&nbsp;
         </Button>
       </Link>

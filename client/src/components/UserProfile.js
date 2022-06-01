@@ -56,22 +56,25 @@ function UserProfile(props) {
             </div>
             </div>
             <br></br>
-            <ListGroup className="groups" style={{ maxWidth: '45%' }}>
-                <ListGroup.Item><h4>Name: {userInfo.username}</h4> </ListGroup.Item>
-                <ListGroup.Item><h4>Email: {userInfo.email}</h4> </ListGroup.Item>
-                <ListGroup.Item><h4>Groups 
-                    <Button onClick={() => navigate(`/creategroup`)} style={{ margin: "10px"}}>Create Group    
-                </Button>
-                <Button onClick={() => navigate(`/joingroup`)} style={{ margin: "4px" }}>Join Group</Button> </h4>
-                    <ListGroup>
-                        {teamsInfo.map((value, index) => {
+            <div>
+                <h2 className='name'>Name: {userInfo.last_name}</h2>
+                <br></br>
+                <h2>Email: {userInfo.email}</h2>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h2 className="group-title">Groups:</h2>
+                <br></br>
+                <ListGroup className="groups" style={{ maxWidth: '25%' }}>
+                {teamsInfo.map((value, index) => {
                             return (
-                                <ListGroup.Item key={index} style="fontSize:2em;" style={{fontFamily: "Concert One"}}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{}}>Leave</Button></ListGroup.Item>
+                                <ListGroup.Item variant="info" key={index} style={{fontFamily: "Concert One", fontSize:"2rem"}}>{value}<Button onClick={() => handleLeaveGroup(value)} className="btn-sm btn-danger float-end" style={{"display": "flex",
+                                    "align-items": "center"}}>Leave</Button></ListGroup.Item>
                             );
                         })}
-                    </ListGroup>
-                </ListGroup.Item>
-            </ListGroup>
+                </ListGroup>
+
+            </div>
         </div>
     );
 

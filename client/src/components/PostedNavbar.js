@@ -36,7 +36,7 @@ const PostedNavbar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <a href="/" style={{ textDecoration: 'none', color: 'inherit' }}><h1>Post-ed</h1></a>
+        <a href="/" style={{ textDecoration: 'none', color: 'inherit' }}><h1 className='nav-title'>Post-ed</h1></a>
         <Navbar.Brand href="/"></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -55,7 +55,7 @@ const PostedNavbar = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="/login">Logout</Nav.Link>
+            <Nav.Link href="/">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
