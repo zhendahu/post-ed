@@ -40,7 +40,7 @@ class LoginModal extends React.Component {
     const handleSubmit = (event) => {
       let _this = this;
       const form = event.currentTarget;
-      console.log("handle submit", form.checkValidity());
+      
       _this.usernameRef.current.setCustomValidity("");
       if (!form.checkValidity()) {
         this.setState({
@@ -51,7 +51,7 @@ class LoginModal extends React.Component {
       } else {
         jwt.login(this.state.username,this.state.password)
           .then((response) => {
-            console.log(response);
+            
             _this.setState({
               validated: false,
             });
@@ -60,7 +60,7 @@ class LoginModal extends React.Component {
                 goto: "/",
               });
               jwt.getUser().then(user=>{
-                console.log(user)
+                
               })
             }
           })
@@ -72,7 +72,7 @@ class LoginModal extends React.Component {
               usernamePrompt: "username or password incorrect",
               passwordPrompt:"username or password incorrect"
             });
-            console.log(error);
+            
           });
       }
       event.preventDefault();

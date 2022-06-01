@@ -12,7 +12,7 @@ function UserProfile(props) {
     const [teamsInfo, setTeamsInfo] = useState([]);
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
         try {
@@ -25,15 +25,15 @@ function UserProfile(props) {
                 setTeamsInfo(teamsInfo)
             }
         } catch (e) {
-            console.log(e);
+            
         }
     }, [userInfo.username, userInfo.email, teamsInfo.length]);
 
     const navigate = useNavigate();
-    console.log(teamsInfo)
+    
 
     const handleLeaveGroup = (groupName) => {
-        console.log(groupName)
+        
         axios.patch('/api/teams/', {
             should_leave: true,
             id: userInfo.id,

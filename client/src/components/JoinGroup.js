@@ -11,7 +11,7 @@ const JoinGroup = () => {
     const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
     }, [userInfo.url]);
@@ -28,7 +28,7 @@ const JoinGroup = () => {
             name: name,
             password: password
         }).catch((error) => {
-            console.log(error);
+            
             return 0;
         }).then(code => {
             if (code !== 0) {

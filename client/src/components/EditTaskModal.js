@@ -27,7 +27,7 @@ class EditTaskModal extends React.Component {
   }
 
   handleSubmit(){
-    console.log('hi')
+    
   }
 
   render() {
@@ -43,21 +43,12 @@ class EditTaskModal extends React.Component {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <p>{this.props.desc}</p>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Assignee</Form.Label>
-
-            <Form.Select aria-label="Default select example">
-            <option>Assign this task to...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            </Form.Select>
+            <p>{this.props.assignee}</p>
             </Form.Group>
-            <Button variant="primary" type='submit'>
-            Save Changes
-          </Button>
           </Form>
         </Modal.Body>
       </Modal>

@@ -27,7 +27,7 @@ class SignUpModal extends React.Component {
     this.usernameRef = React.createRef();
     this.fileUploadRef = React.createRef();
     document.addEventListener("submit", (event) => {
-      console.log("submit", event);
+      
     });
   }
 
@@ -60,7 +60,7 @@ class SignUpModal extends React.Component {
         team_set: [],
       })
       .then((response) => {
-        console.log(response);
+        
         _this.setState({
           validated: false,
         });
@@ -76,7 +76,7 @@ class SignUpModal extends React.Component {
           validated: true,
           usernamePrompt: "Duplicated username",
         });
-        console.log(error);
+        
       });
   }
 
@@ -107,11 +107,11 @@ class SignUpModal extends React.Component {
               },
             })
             .then((res) => {
-              console.log("formdata", event.nativeEvent);
+              
               this.submitUserInfo(res.data.image_url);
             })
             .catch((err) => {
-              console.log("file err:", err);
+              
             });
         } else {
           this.submitUserInfo("111");

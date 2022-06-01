@@ -11,7 +11,7 @@ const CreateGroup = () => {
     const [errorInfo, setErrorInfo] = useState('');
     useEffect(() => {
         jwt.getUser().then(user => {
-            console.log(user);
+            
             setUserInfo(user);
         })
     }, [userInfo.url, errorInfo]);
@@ -23,9 +23,9 @@ const CreateGroup = () => {
         const name = event.target[0].value;
         const password = event.target[1].value;
         const confirm = event.target[2].value;
-        console.log(password + ", " + confirm);
+        
         if (password !== confirm) {
-            console.log("passwords do not match");
+            
             setErrorInfo('Passwords do not match');
             return;
         }
@@ -36,7 +36,7 @@ const CreateGroup = () => {
             team_groups: [],
             team_users: [userInfo.url]
         }).catch((error) => {
-            console.log(error);
+            
             return 0;
         }).then(code => {
             if (code !== 0) {

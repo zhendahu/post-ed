@@ -16,23 +16,28 @@ function TaskPage(props) {
   const [show, setShow] = useState(false)
   let [taskGroupObjects, setTaskGroupObjects] = useState([]);
   let [teamName, setTeamName] = useState('');
+  const [teamUsers, setTeamUsers] = useState([]);
   const { id } = useParams();
 
   const getData = async () => {
     const taskGroupArray = [];
     const teamGroupsData = (await axios(`/api/teams/${id}`)).data;
+    setTeamUsers(teamGroupsData.team_users);
     setTeamName(teamGroupsData.team_name);
-    let index = 0;
+    let index = 999;
     for (const taskGroup of teamGroupsData.team_groups) {
       const taskArray = []
       const tasksGroupsData = (await axios(taskGroup)).data;
       for (const tasks of tasksGroupsData.group_tasks) {
         const task = (await axios(tasks)).data;
         taskArray.push({
-          title: task.task_name
+          title: task.task_name,
+          desc: task.task_description,
+          assignee: task.task_assignee,
+          url: task.url
         });
       }
-      taskGroupArray.push(<Col>{<TaskGroup key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} id={tasksGroupsData.id}/>} <br></br></Col>)
+      taskGroupArray.push(<Col>{<TaskGroup users={teamUsers} key={index} title={tasksGroupsData.taskgroup_name} tasks={taskArray} id={tasksGroupsData.id} url={tasksGroupsData.url} />} <br></br></Col>)
       index++;
     }
     setTaskGroupObjects(taskGroupArray);
