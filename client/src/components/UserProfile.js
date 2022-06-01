@@ -45,7 +45,7 @@ function UserProfile(props) {
     <div className="profile-background">
       <PostedNavbar />
       <div id="name-and-pic">
-        <h2>{userInfo.username}'s Profile</h2>
+        <h2>{userInfo.last_name}'s Profile</h2>
         <div>
           <Image
             src={axios.defaults.baseURL + "/static/" + userInfo.image_url}

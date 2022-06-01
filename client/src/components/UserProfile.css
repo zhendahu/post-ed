@@ -1,7 +1,22 @@
 .profile-background {
-    min-height: 100vh;
+    height: 100vh;
+    overflow: scroll;
     margin-bottom: 1em;
     background: linear-gradient(to right, aqua, fuchsia);
+    padding-bottom: 5rem;
+}
+
+.image{
+    width: 10vw;
+    height: 10vw;
+    object-fit: cover;
+    margin-bottom: 0.75rem;
+    border-radius: 2rem;
+    opacity: 0.9;
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: rgb(0 0 0 / 20%) 0px 4px 8px 0px, rgb(0 0 0 / 19%) 0px 6px 20px 0px;
 }
 
 h2{
