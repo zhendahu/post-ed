@@ -89,7 +89,8 @@ class App extends React.Component {
         <BrowserRouter>
           {<NavigateFunctionComponent />}
           <Routes>
-            <Route exact path="/" element={<UserProfile />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/tasks" element={<TaskPage />} />
             <Route
               exact
               path="/login"

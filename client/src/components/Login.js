@@ -57,7 +57,7 @@ class LoginModal extends React.Component {
             });
             if (response.status == 200) {
               this.setState({
-                goto: "/",
+                goto: "/profile",
               });
               jwt.getUser().then(user=>{
                 

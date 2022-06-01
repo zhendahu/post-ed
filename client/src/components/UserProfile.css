@@ -4,14 +4,6 @@
     background: linear-gradient(to right, aqua, fuchsia);
 }
 
-h1 {
-    font-size: 8.2em;
-    justify-content: space-between;
-    font-family: "Concert One", cursive;
-    mix-blend-mode: difference;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-}
-
 h2{
     font-family: "Concert One", cursive;
     color: white;
@@ -29,7 +21,7 @@ h2{
 
 .groups{
     display: block;
-    margin-left: 600px;
+    margin-left: 800px;
     margin-right: auto;
     text-align: center;
     align-self: center;
