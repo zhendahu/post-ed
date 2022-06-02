@@ -19,20 +19,21 @@ function TaskPage(props) {
   const [teamUsers, setTeamUsers] = useState([]);
   const { id } = useParams();
   const [name, setName] = useState(null);
+  const [run,setRun] = useState(0)
 
+  const refresh=()=>{
+    setRun(run+1)
+  }
   const getData = async () => {
     const taskGroupArray = [];
     const teamGroupsData = (await axios(`/api/teams/${id}`)).data;
-    setTeamUsers(teamGroupsData.team_users);
-    setTeamName(teamGroupsData.team_name);
+
     let index = 999;
     for (const taskGroup of teamGroupsData.team_groups) {
       const taskArray = [];
       const tasksGroupsData = (await axios(taskGroup)).data;
-      console.log("======", name);
       if (name && !tasksGroupsData.taskgroup_name.includes(name)) {
       } else {
-        console.log("fffffff");
         for (const tasks of tasksGroupsData.group_tasks) {
           const task = (await axios(tasks)).data;
           taskArray.push({
@@ -40,20 +41,22 @@ function TaskPage(props) {
             desc: task.task_description,
             assignee: task.task_assignee,
             url: task.url,
+            id:task.id
           });
         }
         taskGroupArray.push(
-          <Col>
+          <Col key={tasksGroupsData.id}>
             {
               <TaskGroup
-                users={teamUsers}
+                users={teamGroupsData.team_users}
                 key={index}
                 title={tasksGroupsData.taskgroup_name}
                 tasks={taskArray}
                 id={tasksGroupsData.id}
                 url={tasksGroupsData.url}
+                refresh={refresh.bind(this)}
               />
-            }{" "}
+            }
             <br></br>
           </Col>
         );
@@ -62,11 +65,14 @@ function TaskPage(props) {
     }
     setTaskGroupObjects(taskGroupArray);
     setLoading(false);
+    setTeamUsers(teamGroupsData.team_users);
+    setTeamName(teamGroupsData.team_name);
   };
 
   useEffect(() => {
     getData();
-  }, [taskGroupObjects.length, name]);
+    setRun(false)
+  }, [run, name]);
   const search = (e) => {
     setName(e.target[0].value);
   };
@@ -85,11 +91,11 @@ function TaskPage(props) {
         <TaskGroupModal
           id={id}
           show={show}
-          onHide={() => setShow(false)}
+          onHide={() =>{setRun(run-1);setShow(false)}}
         ></TaskGroupModal>
         {!isLoading && (
           <Row xs={1} md={3} style={{ maxWidth: "100%", padding: "1em" }}>
-            {taskGroupObjects}
+           {!run?taskGroupObjects:null}
           </Row>
         )}
       </div>
