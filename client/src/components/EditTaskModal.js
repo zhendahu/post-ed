@@ -26,9 +26,6 @@ class EditTaskModal extends React.Component {
     });
   }
 
-  handleSubmit(){
-    
-  }
 
   render() {
     return (
