@@ -51,4 +51,7 @@ Viewing Groups
 ### Editing Profile
 * change name
 * change pfp
-* change email
+* change email  
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
