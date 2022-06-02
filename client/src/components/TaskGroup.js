@@ -49,7 +49,11 @@ function TaskGroup(props) {
 
   useEffect(() => {
     getData();
+<<<<<<< HEAD
   },[count]);
+=======
+  }, [count]);
+>>>>>>> origin/main
 
   const handleTaskSubmit = (event) => {
     event.preventDefault();
@@ -117,7 +121,10 @@ function TaskGroup(props) {
           ))}
         </ListGroup>
         <br></br>
-        <ToggleButton onClick={() => addTask()} variant="success">
+        <ToggleButton onClick={() => {
+          setCount(count+1)
+          addTask()}
+          } variant="success">
           {" "}
           + New Task{" "}
         </ToggleButton>
