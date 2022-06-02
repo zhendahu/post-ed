@@ -1,6 +1,6 @@
 # _Post-Ed_
 
-## Setting Up
+## Starting Up
 
 ### Creating a super user:
 * ``cd server``
@@ -20,7 +20,7 @@
 ## How to Use
 
 ### Creating an account:
-* Create an account by clicking _Sign Up_ from the log-in screen
+* Create an account by clicking **Sign Up** from the log-in screen
 * Provide a name, username, avatar, email, and password to make an account
 
 ### Logging in:
@@ -28,15 +28,20 @@
 
 ### Managing Groups
 Creating a group
-* Go to Groups (on the nav bar) > Create Group
+* Go to **Groups** (on the nav bar) > **Create Group**
 * Enter a group ID and password to create a group  
 
 Joining a group
-* Go to Groups (on the nav bar) > Join Group
+* Go to **Groups** (on the nav bar) > **Join Group**
 * Enter a group ID and password to join a group  
 
 Leaving a group
-* ???
+* Go to **Profile** (on the nav bar)
+* Click **Leave** next to the group you wish to leave
+
+Viewing Groups
+* Click on **Groups** (on the nav bar)
+* Select the group you wish to view
 
 ### Managing Tasks
 * create a task
