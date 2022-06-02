@@ -36,7 +36,8 @@ Joining a group
 * Enter a group ID and password to join a group  
 
 Leaving a group
-* ???
+* Go the profile page
+* Click the "leave" button to leave 
 
 ### Managing Tasks
 * create a task
@@ -47,3 +48,6 @@ Leaving a group
 * change name
 * change pfp
 * change email
+
+### Search for a task
+* Search for a task group
