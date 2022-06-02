@@ -71,7 +71,7 @@ Managing tasks
 * Click on **Edit Profile**
 * Enter desired name and email and select desired profile picture
 
-## Search for a task group
+### Search for a task group
 * Navigate to a user group
 * Enter the name of a task group in the Search Bar
 
