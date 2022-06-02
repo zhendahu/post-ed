@@ -8,6 +8,15 @@ import jwt from "../utils/jwt.js";
 import axios from "axios";
 
 function UserProfile(props) {
+
+function badUrl(url){
+        
+    if(url[23] ==url[24]){
+        return true;
+    }
+    return false;
+}
+
   const [userInfo, setUserInfo] = useState(0);
   const [teamsInfo, setTeamsInfo] = useState([]);
   useEffect(() => {
@@ -41,6 +50,8 @@ function UserProfile(props) {
       .then(window.location.reload(false));
   };
 
+  const url = (badUrl(axios.defaults.baseURL + "/static/" + userInfo.image_url) ? axios.defaults.baseURL + "/static" + userInfo.image_url : axios.defaults.baseURL + "/static/" + userInfo.image_url)
+
   return (
     <div className="profile-background">
       <PostedNavbar />
@@ -49,7 +60,7 @@ function UserProfile(props) {
         <div>
           {userInfo.image_url ? (
             <Image
-              src={axios.defaults.baseURL + "/static" + userInfo.image_url}
+              src={url}
               style={{
                 width: "300px",
                 height: "300px",

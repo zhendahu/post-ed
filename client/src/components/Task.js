@@ -77,8 +77,8 @@ const Task = (props) => {
         style={{ border: "1px solid grey", borderRadius: "50px 50px" }} >
         <EditTaskModal id={id} show={show} onHide={() => onHide()} title={props.data.title} desc={props.data.desc} assignee={props.data.assignee}></EditTaskModal>
         <Card.Title style={{ "textAlign": "center", "fontSize": "20px" }}>{props.data.title}</Card.Title>
-        <Card.Subtitle style={{cursor:'pointer'}} onClick={() => openUserProfileModal()}>{props.data.assignee}</Card.Subtitle>
-        <UserProfileModal id={id} show={showUser} onHide={() => user_onHide()}></UserProfileModal>
+        <Card.Subtitle style={{cursor:'pointer'}} onClick={() => openUserProfileModal()} >{props.data.assignee}</Card.Subtitle>
+        <UserProfileModal id={id} show={showUser} onHide={() => user_onHide()} name={props.data.assignee}></UserProfileModal>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Button
             variant="outline-primary"

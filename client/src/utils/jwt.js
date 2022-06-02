@@ -48,10 +48,22 @@ function getUser(){
       });
 }
 
+function getUser_fromName(name){
+  return new Promise((resolve, reject) =>{
+    axios.get('/api/users').then(res =>{
+      for(let i = 0; i<res.data.results.length; ++i){
+        if(res.data.results[i].username==name){
+          resolve(res.data.results[i])
+        }
+      }
+    })
+  })
+}
+
 function clearToken(){
   
   jwt = "";
   localStorage.clear("token")
 }
 
-export default {clearToken,login, getToken, setToken ,getUser};
+export default {clearToken,login, getToken, setToken ,getUser, getUser_fromName};

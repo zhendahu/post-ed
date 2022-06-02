@@ -8,12 +8,19 @@ import axios from "axios";
 
 function UserProfileModal(props) {
   const [userInfo, setUserInfo] = useState(0);
-
   useEffect(() => {
-    jwt.getUser().then((user) => {
-      setUserInfo(user);
-    });}
-  , [userInfo.username, userInfo.email, userInfo.last_name]);
+      jwt.getUser_fromName(props.name).then((user) => setUserInfo(user));
+    });   
+
+  function badUrl(url){
+        
+    if(url[23] ==url[24]){
+        return true;
+    }
+    return false;
+}
+
+  const url = (badUrl(axios.defaults.baseURL + "/static/" + userInfo.image_url) ? axios.defaults.baseURL + "/static" + userInfo.image_url : axios.defaults.baseURL + "/static/" + userInfo.image_url)
 
   return (
     <Modal show={props.show} onHide={() => props.onHide()}>
@@ -24,7 +31,7 @@ function UserProfileModal(props) {
     <div style={{textAlign:"center", fontWeight:"bold"}}>
           {userInfo.image_url ? (
             <Image
-              src={axios.defaults.baseURL + "/static" + userInfo.image_url}
+              src={url}
               style={{
                 width: "75",
                 height: "75",
