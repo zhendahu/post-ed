@@ -33,8 +33,8 @@ function UserProfileModal(props) {
             <Image
               src={url}
               style={{
-                width: "75",
-                height: "75",
+                width: "300px",
+                height: "300px",
                 objectFit: "cover",
                 marginBottom: "0.75rem",
                 borderRadius: "2rem",
