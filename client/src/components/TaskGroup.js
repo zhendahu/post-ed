@@ -49,11 +49,7 @@ function TaskGroup(props) {
 
   useEffect(() => {
     getData();
-<<<<<<< HEAD
   },[count]);
-=======
-  }, [count]);
->>>>>>> origin/main
 
   const handleTaskSubmit = (event) => {
     event.preventDefault();
