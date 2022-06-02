@@ -47,7 +47,7 @@ function UserProfile(props) {
       <div id="name-and-pic">
         <h2>{userInfo.last_name}'s Profile</h2>
         <div>
-          <Image
+    {  userInfo.image_url? <Image
             src={axios.defaults.baseURL + "/static/" + userInfo.image_url}
             style={{
               width: "300px",
@@ -61,7 +61,7 @@ function UserProfile(props) {
               borderColor:"rgba(255,255,255,.1)",
               boxShadow: "0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"
             }}
-          ></Image>
+          ></Image>:null}
         </div>
         <div>
           <Button
@@ -94,7 +94,7 @@ function UserProfile(props) {
                 <Button
                   onClick={() => handleLeaveGroup(value)}
                   className="btn-sm btn-danger float-end"
-                  style={{ display: "flex", "align-items": "center" }}
+                  style={{ display: "flex", "alignItems": "center" }}
                 >
                   Leave
                 </Button>

@@ -25,6 +25,15 @@ h1{
 .home-background {
   background: linear-gradient(to right, aqua, fuchsia);
 }
+.home-background1{
+  background: linear-gradient(to right, aqua, fuchsia);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content:start;
+  gap:2rem;
+}
 .title{
   font-size: 3.2em;
   justify-content: space-between;
