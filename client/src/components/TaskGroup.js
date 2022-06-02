@@ -11,7 +11,7 @@ function TaskGroup(props) {
   const [show, setShow] = useState(false)
   const [userData, setUserData] = useState([])
   const [loading, setLoading] = useState(true)
-
+  const [count, setCount] = useState(0)
   const addTask = () => {
     setShow(true)
   }
@@ -34,7 +34,7 @@ function TaskGroup(props) {
   const getData = async () => {
     const users = [];
     let index = 0;
-    for (const url in props.users) {
+    for (const url of props.users) {
       const reqData = (await axios.get(url)).data;
       users.push(<option key={index} value={reqData.username}>{reqData.username}</option>);
       index++;
@@ -45,7 +45,7 @@ function TaskGroup(props) {
 
   useEffect(() => {
     getData();
-  });
+  }, [count]);
 
   const handleTaskSubmit = (event) => {
     event.preventDefault();
@@ -110,7 +110,10 @@ function TaskGroup(props) {
           ))}
         </ListGroup>
         <br></br>
-        <ToggleButton onClick={() => addTask()} variant="success">
+        <ToggleButton onClick={() => {
+          setCount(count+1)
+          addTask()}
+          } variant="success">
           {" "}
           + New Task{" "}
         </ToggleButton>
