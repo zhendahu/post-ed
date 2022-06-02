@@ -25,6 +25,7 @@ import JoinGroup from "./components/JoinGroup";
 
 import axios from "axios";
 import jwt from "./utils/jwt.js";
+import SearchGroup from "./components/SearchGroup";
 
 axios.defaults.baseURL = "//127.0.0.1:8000";
 const SetupInterceptors = (navigate) => {
@@ -142,6 +143,15 @@ class App extends React.Component {
               element={
                 <div>
                   <JoinGroup />
+                </div>
+              }
+            />
+                        <Route
+              exact
+              path="/searchgroup"
+              element={
+                <div>
+                  <SearchGroup />
                 </div>
               }
             />
