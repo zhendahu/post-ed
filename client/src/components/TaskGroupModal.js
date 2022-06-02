@@ -43,9 +43,8 @@ class TaskGroupModal extends React.Component {
                 id: this.props.id,
                 taskgroup_name: groupName,
                 should_delete: false
-            }).then(res => {
-                
-                window.location.reload();
+            }).then(res => {    
+                this.props.onHide()
             });
         };
         return (

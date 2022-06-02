@@ -47,21 +47,24 @@ function UserProfile(props) {
       <div id="name-and-pic">
         <h2>{userInfo.last_name}'s Profile</h2>
         <div>
-          <Image
-            src={axios.defaults.baseURL + "/static/" + userInfo.image_url}
-            style={{
-              width: "300px",
-              height: "300px",
-              objectFit: "cover",
-              marginBottom: "0.75rem",
-              borderRadius: "2rem",
-              opacity: "0.9",
-              borderWidth: "4px",
-              borderStyle: "solid",
-              borderColor:"rgba(255,255,255,.1)",
-              boxShadow: "0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)"
-            }}
-          ></Image>
+          {userInfo.image_url ? (
+            <Image
+              src={axios.defaults.baseURL + "/static" + userInfo.image_url}
+              style={{
+                width: "300px",
+                height: "300px",
+                objectFit: "cover",
+                marginBottom: "0.75rem",
+                borderRadius: "2rem",
+                opacity: "0.9",
+                borderWidth: "4px",
+                borderStyle: "solid",
+                borderColor: "rgba(255,255,255,.1)",
+                boxShadow:
+                  "0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)",
+              }}
+            ></Image>
+          ) : null}
         </div>
         <div>
           <Button
@@ -82,19 +85,26 @@ function UserProfile(props) {
         <br></br>
         <h2 className="group-title">Groups:</h2>
         <br></br>
-        <ListGroup className="groups" style={{ maxWidth: "25%" }}>
+        <ListGroup
+          className="groups"
+          style={{ opacity: "1.0", borderRadius: "1rem", maxWidth: "25%" }}
+        >
           {teamsInfo.map((value, index) => {
             return (
               <ListGroup.Item
                 variant="info"
                 key={index}
-                style={{ fontFamily: "Concert One", fontSize: "2rem" }}
+                style={{
+                  fontFamily: "Concert One",
+                  fontSize: "2rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
               >
                 {value}
                 <Button
                   onClick={() => handleLeaveGroup(value)}
                   className="btn-sm btn-danger float-end"
-                  style={{ display: "flex", "align-items": "center" }}
                 >
                   Leave
                 </Button>
