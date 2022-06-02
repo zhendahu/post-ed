@@ -18,7 +18,7 @@ function TaskPage(props) {
   let [teamName, setTeamName] = useState("");
   const [teamUsers, setTeamUsers] = useState([]);
   const { id } = useParams();
-  const[name,setName] = useState(null)
+  const [name, setName] = useState(null);
 
   const getData = async () => {
     const taskGroupArray = [];
@@ -29,9 +29,8 @@ function TaskPage(props) {
     for (const taskGroup of teamGroupsData.team_groups) {
       const taskArray = [];
       const tasksGroupsData = (await axios(taskGroup)).data;
-      console.log("======",name)
+      console.log("======", name);
       if (name && !tasksGroupsData.taskgroup_name.includes(name)) {
-       
       } else {
         console.log("fffffff");
         for (const tasks of tasksGroupsData.group_tasks) {
@@ -67,7 +66,7 @@ function TaskPage(props) {
 
   useEffect(() => {
     getData();
-  }, [taskGroupObjects.length,name]);
+  }, [taskGroupObjects.length, name]);
   const search = (e) => {
     setName(e.target[0].value);
   };
