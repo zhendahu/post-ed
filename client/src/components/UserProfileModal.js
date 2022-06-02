@@ -24,10 +24,10 @@ function UserProfileModal(props) {
     <div style={{textAlign:"center", fontWeight:"bold"}}>
           {userInfo.image_url ? (
             <Image
-              src={axios.defaults.baseURL + "/static/" + userInfo.image_url}
+              src={axios.defaults.baseURL + "/static" + userInfo.image_url}
               style={{
-                width: "100",
-                height: "100",
+                width: "75",
+                height: "75",
                 objectFit: "cover",
                 marginBottom: "0.75rem",
                 borderRadius: "2rem",
@@ -42,8 +42,8 @@ function UserProfileModal(props) {
           ) : null}
       <br></br>
       <br></br>
-        <p >Name: {userInfo.last_name}</p>
-       <p>Email: {userInfo.email}</p>
+        <h4 >Name: {userInfo.last_name}</h4>
+       <h4>Email: {userInfo.email}</h4>
       </div>
     </Modal.Body>
     </Modal>

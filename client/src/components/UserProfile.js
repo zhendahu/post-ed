@@ -49,7 +49,7 @@ function UserProfile(props) {
         <div>
           {userInfo.image_url ? (
             <Image
-              src={axios.defaults.baseURL + "/static/" + userInfo.image_url}
+              src={axios.defaults.baseURL + "/static" + userInfo.image_url}
               style={{
                 width: "300px",
                 height: "300px",
