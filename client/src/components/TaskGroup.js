@@ -12,6 +12,7 @@ function TaskGroup(props) {
   const [userData, setUserData] = useState([])
   const [loading, setLoading] = useState(true)
   const [count,setCount] = useState(0)
+  const [tasks,setTasks] = useState([])
 
   const addTask = () => {
     setCount(count+1)
@@ -19,7 +20,7 @@ function TaskGroup(props) {
   }
 
   const refresh=()=>{
-    setCount(count-1)
+    setCount(count+1)
   }
   //INCOMPLETE
   const removeTaskGroup = () => {
@@ -36,9 +37,24 @@ function TaskGroup(props) {
   }
 
   const getData = async () => {
+      console.log("tasks")
     const users = [];
+    const taskArray = []
     let index = 0;
+    const tasksGroupsData = (await axios(props.taskGroup)).data;
+    for (const tasks of tasksGroupsData.group_tasks) {
+      const task = (await axios(tasks)).data;
+      taskArray.push({
+        title: task.task_name,
+        desc: task.task_description,
+        assignee: task.task_assignee,
+        url: task.url,
+        id:task.id
+      });
+    }
+    setTasks(taskArray)
     for (const url of props.users) {
+      
       const reqData = (await axios.get(url)).data;
       users.push(<option key={index} value={reqData.username}>{reqData.username}</option>);
       index++;
@@ -65,7 +81,7 @@ function TaskGroup(props) {
     }).then(res=>{
       console.log("add")
       setShow(false)
-      props.refresh()
+      refresh()
     })
   }
 
@@ -109,7 +125,7 @@ function TaskGroup(props) {
 
 
         <ListGroup className="list-group-flush" bg="dark">
-          {props.tasks.map((task) => (
+          {tasks.map((task) => (
             <ListGroup.Item key={task.id}>
               <Task refresh={refresh} data={task}> </Task>
               &nbsp;&nbsp;&nbsp;&nbsp;

@@ -59,8 +59,10 @@ const Task = (props) => {
   }
 
   const removeTask = () => {
-    axios.delete(props.data.url)
-    props.refresh()
+    axios.delete(props.data.url).then(res=>{
+      props.refresh()
+    })
+    
   };
 
   const { id } = useParams();
