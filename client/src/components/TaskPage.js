@@ -30,20 +30,9 @@ function TaskPage(props) {
 
     let index = 999;
     for (const taskGroup of teamGroupsData.team_groups) {
-      const taskArray = [];
       const tasksGroupsData = (await axios(taskGroup)).data;
       if (name && !tasksGroupsData.taskgroup_name.includes(name)) {
       } else {
-        for (const tasks of tasksGroupsData.group_tasks) {
-          const task = (await axios(tasks)).data;
-          taskArray.push({
-            title: task.task_name,
-            desc: task.task_description,
-            assignee: task.task_assignee,
-            url: task.url,
-            id:task.id
-          });
-        }
         taskGroupArray.push(
           <Col key={tasksGroupsData.id}>
             {
@@ -51,7 +40,7 @@ function TaskPage(props) {
                 users={teamGroupsData.team_users}
                 key={index}
                 title={tasksGroupsData.taskgroup_name}
-                tasks={taskArray}
+                taskGroup={taskGroup}
                 id={tasksGroupsData.id}
                 url={tasksGroupsData.url}
                 refresh={refresh.bind(this)}
