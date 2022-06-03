@@ -61,7 +61,7 @@ function TaskPage(props) {
   useEffect(() => {
     getData();
     setRun(false)
-  }, [run, name]);
+  }, [run, name,id]);
   const search = (e) => {
     setName(e.target[0].value);
   };
