@@ -40,7 +40,7 @@ const PostedNavbar = (props) => {
 
   const handleGroupClick = (value) => {
     navigate(`/group/${value.id}`);
-    window.location.reload();
+    //window.location.reload();
   };
 
   return (
