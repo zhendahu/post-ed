@@ -64,7 +64,7 @@ Creating a task
 
 Managing tasks
 * Click **Open Task** to view more details about a task
-* Click the **Trash Can Icon** (right of the **Open Task** button) to remove a task group
+* Click the **Trash Can Icon** (right of the **Open Task** button) to remove a task
 
 ### Editing Profile
 * Click on **Profile** (on the nav bar)
